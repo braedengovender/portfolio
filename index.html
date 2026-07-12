@@ -37,8 +37,8 @@
         --border: rgba(255, 255, 255, 0.07);
         --border-h: rgba(255, 255, 255, 0.14);
         --text: #f0ede8;
-        --text-muted: #6b6862;
-        --text-dim: #2e2c2a;
+        --text-muted: #948e85;
+        --text-dim: #46423c;
         --accent: #e8e0d0;
         --green: #4ade80;
         --green-glow: rgba(74, 222, 128, 0.18);
@@ -52,8 +52,8 @@
         font-family: var(--mono);
         background: var(--bg);
         color: var(--text);
-        font-size: 14px;
-        line-height: 1.65;
+        font-size: 15.5px;
+        line-height: 1.7;
         overflow-x: hidden;
         /* cursor: none; */
       }
@@ -226,7 +226,7 @@
       }
 
       .hero-desc {
-        font-size: 15px;
+        font-size: 16px;
         color: var(--text-muted);
         max-width: 480px;
         line-height: 1.8;
@@ -298,6 +298,335 @@
         height: 5px;
         border-radius: 50%;
         background: var(--green);
+      }
+
+      /* ─── EDUCATION ───────────────────────────────────────── */
+      #education {
+        border-top: 1px solid var(--border);
+      }
+
+      .edu-list {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        position: relative;
+        padding-left: 28px;
+      }
+      .edu-list::before {
+        content: "";
+        position: absolute;
+        top: 6px;
+        bottom: 26px;
+        left: 3px;
+        width: 1px;
+        background: linear-gradient(
+          to bottom,
+          rgba(74, 222, 128, 0.5),
+          rgba(74, 222, 128, 0.12)
+        );
+      }
+
+      .edu-item {
+        border-bottom: 1px solid var(--border);
+        padding: 2rem 0;
+        opacity: 0;
+        transform: translateY(20px);
+        position: relative;
+      }
+      .edu-item::before {
+        content: "";
+        position: absolute;
+        left: -28px;
+        top: 6px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 2px solid var(--green);
+        z-index: 1;
+      }
+      .edu-item.edu-current::before {
+        background: var(--green);
+        box-shadow: 0 0 0 4px var(--green-glow);
+      }
+      .edu-item:first-child {
+        padding-top: 0;
+      }
+      .edu-item:last-child {
+        border-bottom: none;
+      }
+
+      .edu-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 2.5rem;
+      }
+
+      .edu-left {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .edu-dates {
+        font-size: 10px;
+        color: var(--text);
+        letter-spacing: 0.08em;
+        margin-bottom: 6px;
+      }
+
+      .edu-name {
+        font-family: var(--serif);
+        font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+        font-weight: 400;
+        color: var(--accent);
+        line-height: 1.25;
+        margin-bottom: 4px;
+      }
+      .edu-name em {
+        font-style: italic;
+        color: var(--text-muted);
+      }
+
+      .edu-institution {
+        font-size: 14px;
+        color: var(--text);
+        margin-bottom: 10px;
+        letter-spacing: 0.02em;
+      }
+
+      .edu-aggregate {
+        font-size: 13.5px;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+
+      .edu-badge-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .edu-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: var(--green);
+        background: var(--green-glow);
+        border: 1px solid rgba(74, 222, 128, 0.2);
+        padding: 4px 11px;
+        border-radius: 100px;
+        letter-spacing: 0.02em;
+      }
+      .edu-badge::before {
+        content: "↑";
+        font-size: 10px;
+      }
+
+      .edu-extra {
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .edu-extra-item {
+        font-size: 13.5px;
+        color: var(--text-muted);
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        line-height: 1.5;
+      }
+      .edu-extra-item::before {
+        content: "";
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--text-dim);
+        flex-shrink: 0;
+        margin-top: 7px;
+      }
+
+      /* chart */
+      .edu-right {
+        flex-shrink: 0;
+        width: 300px;
+      }
+      .edu-chart-label {
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+        text-align: right;
+      }
+      .edu-chart {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+      .edu-chart-line {
+        fill: none;
+        stroke: var(--green);
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .edu-chart-dot {
+        fill: var(--bg);
+        stroke: var(--green);
+        stroke-width: 2;
+      }
+      .edu-chart-val {
+        font-family: var(--mono);
+        font-size: 9px;
+        fill: var(--text);
+      }
+      .edu-chart-tick {
+        font-family: var(--mono);
+        font-size: 8px;
+        fill: var(--text-dim);
+      }
+      .edu-chart-grid {
+        stroke: var(--border);
+        stroke-width: 1;
+      }
+
+      /* toggle + actions */
+      .edu-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 1.4rem;
+      }
+
+      .edu-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        padding: 8px 14px;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .edu-toggle:hover {
+        border-color: var(--border-h);
+        color: var(--text);
+      }
+      .edu-toggle .edu-count {
+        color: var(--text-dim);
+      }
+      .edu-toggle .edu-chevron {
+        font-size: 9px;
+        transition: transform 0.25s var(--ease);
+      }
+      .edu-toggle[aria-expanded="true"] .edu-chevron {
+        transform: rotate(180deg);
+      }
+      .edu-toggle[aria-expanded="true"] {
+        color: var(--text);
+        border-color: var(--border-h);
+      }
+
+      .edu-testimonial-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: transparent;
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        padding: 8px 14px;
+        text-decoration: none;
+        transition:
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .edu-testimonial-link:hover {
+        border-color: rgba(74, 222, 128, 0.4);
+        color: var(--green);
+      }
+      .edu-testimonial-link::after {
+        content: "↗";
+        font-size: 10px;
+      }
+
+      /* panel */
+      .edu-panel {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s var(--ease);
+      }
+      .edu-panel-inner {
+        padding-top: 1.5rem;
+      }
+
+      .edu-year-group {
+        margin-bottom: 1.1rem;
+      }
+      .edu-year-group:last-child {
+        margin-bottom: 0;
+      }
+      .edu-year-label {
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--green);
+        margin-bottom: 0.6rem;
+        font-weight: 500;
+      }
+
+      .edu-dist-row {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 13.5px;
+      }
+      .edu-dist-row:last-child {
+        border-bottom: none;
+      }
+      .edu-code {
+        color: var(--text-muted);
+        flex-shrink: 0;
+        width: 68px;
+        letter-spacing: 0.02em;
+      }
+      .edu-mod {
+        color: var(--text);
+        flex: 1;
+        min-width: 0;
+      }
+      .edu-merit {
+        display: block;
+        font-style: italic;
+        color: var(--green);
+        font-size: 10.5px;
+        margin-top: 2px;
+      }
+      .edu-mark {
+        color: var(--accent);
+        font-weight: 600;
+        flex-shrink: 0;
+        text-align: right;
+        width: 40px;
+      }
+
+      /* primary school (static, no chevron affordance) */
+      .edu-static .edu-name {
+        color: var(--accent);
       }
 
       /* ─── PROJECTS ────────────────────────────────────────────── */
@@ -443,7 +772,7 @@
         gap: 9px;
       }
       .skill-item {
-        font-size: 12px;
+        font-size: 13px;
         color: var(--text-muted);
         display: flex;
         align-items: center;
@@ -513,7 +842,7 @@
         gap: 1.25rem;
       }
       .about-p {
-        font-size: 13px;
+        font-size: 14.5px;
         color: var(--text-muted);
         line-height: 1.85;
       }
@@ -524,7 +853,7 @@
         margin-top: 0.25rem;
       }
       .about-hobby {
-        font-size: 12px;
+        font-size: 13px;
         color: var(--text-muted);
         padding: 6px 0;
         border-bottom: 1px solid var(--border);
@@ -573,7 +902,7 @@
         color: var(--text-muted);
       }
       .contact-sub {
-        font-size: 13px;
+        font-size: 14px;
         color: var(--text-muted);
         max-width: 400px;
         line-height: 1.8;
@@ -694,6 +1023,25 @@
         .footer {
           padding: 1.25rem;
         }
+        .edu-top {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        .edu-right {
+          width: 100%;
+        }
+        .edu-code {
+          width: 56px;
+        }
+        .edu-list {
+          padding-left: 20px;
+        }
+        .edu-item::before {
+          left: -20px;
+        }
+        .edu-list::before {
+          left: 3px;
+        }
       }
     </style>
   </head>
@@ -809,6 +1157,219 @@
       </div>
     </section>
     
+    <!-- ─── EDUCATION ──────────────────────────────────────── -->
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-label">education</div>
+        <div class="edu-list">
+          <!-- UNIVERSITY -->
+          <div class="edu-item edu-current">
+            <div class="edu-top">
+              <div class="edu-left">
+                <div class="edu-dates">FEB 2023 — NOV 2026</div>
+                <div class="edu-name">
+                  Bachelor of Science <em>in Computer Science & Information Technology</em>
+                </div>
+                <div class="edu-institution">University of KwaZulu-Natal (Westville Campus)</div>
+                <div class="edu-aggregate">82.75% Semester 1 Aggregate (2026)</div>
+                <div class="edu-badge-row">
+                  <span class="edu-badge">+11.75% since Sem 2 2024</span>
+                </div>
+                <div class="edu-extra">
+                  <div class="edu-extra-item">Mentee in the Tech Society Mentorship Program (2023)</div>
+                  <div class="edu-extra-item">JSE Investment Challenge participant (2024)</div>
+                  <div class="edu-extra-item">Member and STEM Manager of Tech Society UKZN (2024)</div>
+                  <div class="edu-extra-item">Member and Graphic Designer of Finance Society UKZN (2025 – Present)</div>
+                </div>
+              </div>
+
+              <div class="edu-right">
+                <div class="edu-chart-label">semester averages</div>
+                <svg
+                  class="edu-chart"
+                  id="edu-chart-svg"
+                  viewBox="0 0 310 145"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line class="edu-chart-grid" x1="20" y1="100" x2="290" y2="100" />
+
+                  <path
+                    id="edu-chart-path"
+                    class="edu-chart-line"
+                    d="M20,100 L110,44.5 L200,38.5 L290,15"
+                  />
+
+                  <circle class="edu-chart-dot" cx="20" cy="100" r="3.5" />
+                  <circle class="edu-chart-dot" cx="110" cy="44.5" r="3.5" />
+                  <circle class="edu-chart-dot" cx="200" cy="38.5" r="3.5" />
+                  <circle class="edu-chart-dot" cx="290" cy="15" r="3.5" />
+
+                  <text class="edu-chart-val" x="20" y="93" text-anchor="middle">71.00%</text>
+                  <text class="edu-chart-val" x="110" y="35" text-anchor="middle">78.67%</text>
+                  <text class="edu-chart-val" x="200" y="29" text-anchor="middle">79.50%</text>
+                  <text class="edu-chart-val" x="290" y="8" text-anchor="middle">82.75%</text>
+
+                  <text class="edu-chart-tick" x="20" y="118" text-anchor="middle">sem2 '24</text>
+                  <text class="edu-chart-tick" x="110" y="118" text-anchor="middle">sem1 '25</text>
+                  <text class="edu-chart-tick" x="200" y="118" text-anchor="middle">sem2 '25</text>
+                  <text class="edu-chart-tick" x="290" y="118" text-anchor="middle">sem1 '26</text>
+                </svg>
+              </div>
+            </div>
+
+            <div class="edu-actions">
+              <button class="edu-toggle" data-target="uni-distinctions" aria-expanded="false">
+                view distinctions <span class="edu-count">(10)</span>
+                <span class="edu-chevron">↓</span>
+              </button>
+            </div>
+
+            <div class="edu-panel" id="uni-distinctions">
+              <div class="edu-panel-inner">
+                <div class="edu-year-group">
+                  <div class="edu-year-label">3rd year (so far)</div>
+                  <div class="edu-dist-row">
+                    <span class="edu-code">COMP315</span>
+                    <span class="edu-mod">Advanced Programming</span>
+                    <span class="edu-mark">95%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-code">ISTN3AS</span>
+                    <span class="edu-mod">
+                      Applied Systems Implementation 1
+                      <em class="edu-merit">— awarded Certificate of Merit</em>
+                    </span>
+                    <span class="edu-mark">91%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-code">ISTN3SA</span>
+                    <span class="edu-mod">Advanced Systems Analysis & Design</span>
+                    <span class="edu-mark">88%</span>
+                  </div>
+                </div>
+
+                <div class="edu-year-group">
+                  <div class="edu-year-label">2nd year</div>
+                  <div class="edu-dist-row">
+                    <span class="edu-code">ISTN212</span>
+                    <span class="edu-mod">Databases and Programming</span>
+                    <span class="edu-mark">90%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-code">COMP204</span>
+                    <span class="edu-mod">Computer Organisation & Architecture</span>
+                    <span class="edu-mark">88%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-code">STAT243</span>
+                    <span class="edu-mod">Data Mining using Machine Learning</span>
+                    <span class="edu-mark">84%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-code">MATH236</span>
+                    <span class="edu-mod">Discrete Mathematics with Applications</span>
+                    <span class="edu-mark">83%</span>
+                  </div>
+                </div>
+
+                <div class="edu-year-group">
+                  <div class="edu-year-label">1st year</div>
+                  <div class="edu-dist-row">
+                    <span class="edu-code">STAT140</span>
+                    <span class="edu-mod">Statistical Methods</span>
+                    <span class="edu-mark">82%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-code">ZULN101</span>
+                    <span class="edu-mod">Basic isiZulu Studies</span>
+                    <span class="edu-mark">77%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-code">COMP100</span>
+                    <span class="edu-mod">Introduction to Computer Science</span>
+                    <span class="edu-mark">77%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HIGH SCHOOL -->
+          <div class="edu-item">
+            <div class="edu-top">
+              <div class="edu-left">
+                <div class="edu-dates">2018 - 2022</div>
+                <div class="edu-name">
+                  National Senior Certificate <em> - Bachelor's Pass</em>
+                </div>
+                <div class="edu-institution">Kharwastan Secondary School</div>
+                <div class="edu-aggregate">5 Distinctions · 'A' Aggregate</div>
+                <div class="edu-aggregate">Other Subjects: Pure Mathematics, Physical Science, Afrikaans First Additional Language</div>
+                <div class="edu-extra">
+                  <div class="edu-extra-item">Elected Representative Class Leader (RCL)</div>
+                  <div class="edu-extra-item">Participated in the South African Mathematics Olympiad</div>
+                  <div class="edu-extra-item">Achieved 80% in Quantitative Literacy at the National Benchmark Test (NBT's)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="edu-actions">
+              <button class="edu-toggle" data-target="hs-distinctions" aria-expanded="false">
+                view distinctions <span class="edu-count">(5)</span>
+                <span class="edu-chevron">↓</span>
+              </button>
+              <a href="Braeden Govender - High School Testimonial.pdf" target="_blank" rel="noopener" class="edu-testimonial-link">
+                view testimonial
+              </a>
+            </div>
+
+            <div class="edu-panel" id="hs-distinctions">
+              <div class="edu-panel-inner">
+                <div class="edu-year-group">
+                  <div class="edu-dist-row">
+                    <span class="edu-mod">History</span>
+                    <span class="edu-mark">89%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-mod">Life Orientation</span>
+                    <span class="edu-mark">88%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-mod">Geography</span>
+                    <span class="edu-mark">86%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-mod">Accounting</span>
+                    <span class="edu-mark">84%</span>
+                  </div>
+                  <div class="edu-dist-row">
+                    <span class="edu-mod">English</span>
+                    <span class="edu-mark">84%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRIMARY SCHOOL -->
+          <div class="edu-item edu-static">
+            <div class="edu-top">
+              <div class="edu-left">
+                <div class="edu-dates">2011 — 2017</div>
+                <div class="edu-name">Bellair Primary School</div>
+                <div class="edu-extra">
+                  <div class="edu-extra-item">6x Consistent Good Work Award</div>
+                  <div class="edu-extra-item">Participated in Mathematics & Art Club</div>
+                  <div class="edu-extra-item">Featured on Nickelodeon's Genius TV Show</div>
+                  <div class="edu-extra-item">Excellence in English, Technology & Principal Awards</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── PROJECTS ───────────────────────────────────────────── -->
     <section id="projects" class="section">
       <div class="container">
@@ -1021,6 +1582,63 @@
         ],
         { y: 18 },
       );
+      
+      /* education items */
+      document.querySelectorAll(".edu-item").forEach((el, i) => {
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          delay: i * 0.08,
+          scrollTrigger: { trigger: el, start: "top 88%" },
+        });
+      });
+
+      /* semester chart line draw-in */
+      const eduPath = document.getElementById("edu-chart-path");
+      if (eduPath) {
+        const len = eduPath.getTotalLength();
+        eduPath.style.strokeDasharray = len;
+        eduPath.style.strokeDashoffset = len;
+        gsap.to(eduPath, {
+          strokeDashoffset: 0,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: { trigger: "#edu-chart-svg", start: "top 85%" },
+        });
+        gsap.from(".edu-chart-dot", {
+          scale: 0,
+          transformOrigin: "center",
+          duration: 0.4,
+          stagger: 0.15,
+          delay: 0.3,
+          ease: "back.out(2)",
+          scrollTrigger: { trigger: "#edu-chart-svg", start: "top 85%" },
+        });
+        gsap.from(".edu-chart-val, .edu-chart-tick", {
+          opacity: 0,
+          duration: 0.5,
+          delay: 0.5,
+          ease: "power1.out",
+          scrollTrigger: { trigger: "#edu-chart-svg", start: "top 85%" },
+        });
+      }
+
+      /* education accordion toggles */
+      document.querySelectorAll(".edu-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const panel = document.getElementById(btn.dataset.target);
+          const isOpen = btn.getAttribute("aria-expanded") === "true";
+          if (isOpen) {
+            panel.style.maxHeight = "0px";
+            btn.setAttribute("aria-expanded", "false");
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
 
       /* work items */
       document.querySelectorAll(".work-item").forEach((el, i) => {
