@@ -702,6 +702,96 @@
         color: var(--accent);
       }
 
+      /* ─── EXPERIENCE ──────────────────────────────────────── */
+      #experience {
+        border-top: 1px solid var(--border);
+      }
+
+      .exp-list {
+        display: flex;
+        flex-direction: column;
+        margin-top: 2rem;
+        position: relative;
+        padding-left: 28px;
+      }
+      .exp-list::before {
+        content: "";
+        position: absolute;
+        top: 6px;
+        bottom: 26px;
+        left: 3px;
+        width: 1px;
+        background: linear-gradient(
+          to bottom,
+          rgba(74, 222, 128, 0.5),
+          rgba(74, 222, 128, 0.12)
+        );
+      }
+
+      .exp-item {
+        border-bottom: 1px solid var(--border);
+        padding: 2rem 0;
+        opacity: 0;
+        transform: translateY(20px);
+        position: relative;
+      }
+      .exp-item:first-child {
+        padding-top: 0;
+      }
+      .exp-item:last-child {
+        border-bottom: none;
+      }
+      .exp-item::before {
+        content: "";
+        position: absolute;
+        left: -28px;
+        top: 6px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 2px solid var(--green);
+        z-index: 1;
+      }
+      .exp-item.exp-current::before {
+        background: var(--green);
+        box-shadow: 0 0 0 4px var(--green-glow);
+      }
+
+      .exp-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .exp-dates {
+        font-size: 10px;
+        color: var(--text-dim);
+        letter-spacing: 0.08em;
+        margin-bottom: 6px;
+      }
+
+      .exp-role {
+        font-family: var(--serif);
+        font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+        font-weight: 400;
+        color: var(--accent);
+        line-height: 1.25;
+        margin-bottom: 4px;
+      }
+      .exp-role em {
+        font-style: italic;
+        color: var(--text-muted);
+      }
+
+      .exp-org {
+        font-size: 14px;
+        color: var(--text);
+        letter-spacing: 0.02em;
+      }
+
       /* ─── PROJECTS ────────────────────────────────────────────── */
       #projects {
         border-top: 1px solid var(--border);
@@ -1115,6 +1205,15 @@
         .edu-list::before {
           left: 3px;
         }
+        .exp-list {
+          padding-left: 20px;
+        }
+        .exp-item::before {
+          left: -20px;
+        }
+        .exp-list::before {
+          left: 3px;
+        }
       }
     </style>
   </head>
@@ -1448,6 +1547,64 @@
       </div>
     </section>
 
+    <!-- ─── EXPERIENCE ─────────────────────────────────────── -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-label">experience</div>
+        <div class="exp-list">
+          <!-- GRAPHIC DESIGNER — CURRENT -->
+          <div class="exp-item exp-current">
+            <div class="exp-top">
+              <div class="exp-left">
+                <div class="exp-dates">DEC 2025 — CURRENT</div>
+                <div class="exp-role">Graphic Designer <em>(Voluntary)</em></div>
+                <div class="exp-org">Finance Society - University of KwaZulu-Natal</div>
+              </div>
+              <span class="work-status live">current</span>
+            </div>
+            <div class="edu-extra">
+              <div class="edu-extra-item">Designed professional content using Canva for social media platforms aligned with the society's brand</div>
+              <div class="edu-extra-item">Collaborated with executive members to develop Finsoc Pulse (Magazine) for Semester 1</div>
+              <div class="edu-extra-item">Managed multiple design projects efficiently under tight deadlines</div>
+              <div class="edu-extra-item">Assisted with recruitment campaigns and attended meetings</div>
+            </div>
+          </div>
+
+          <!-- STATISTICS TUTOR -->
+          <div class="exp-item">
+            <div class="exp-top">
+              <div class="exp-left">
+                <div class="exp-dates">FEB — MAY 2026</div>
+                <div class="exp-role">2nd Year Statistics Tutor <em>(Part-Time)</em></div>
+                <div class="exp-org">University of KwaZulu-Natal</div>
+              </div>
+            </div>
+            <div class="edu-extra">
+              <div class="edu-extra-item">Selected as a tutor after achieving 84% in STAT243: Data Mining using Machine Learning (2025)</div>
+              <div class="edu-extra-item">Led weekly tutorials, answered student questions, marked tutorial work, provided feedback</div>
+              <div class="edu-extra-item">Created slides and quizzes, assisted with test invigilation, and demonstrated MS Excel techniques</div>
+            </div>
+          </div>
+
+          <!-- STEM MANAGER -->
+          <div class="exp-item">
+            <div class="exp-top">
+              <div class="exp-left">
+                <div class="exp-dates">2024 — JAN 2025</div>
+                <div class="exp-role">STEM Manager <em>(Voluntary)</em></div>
+                <div class="exp-org">Tech Society - University of KwaZulu-Natal</div>
+              </div>
+            </div>
+            <div class="edu-extra">
+              <div class="edu-extra-item">Led initiatives for 450+ members, organizing events to help members obtain STEM course certificates</div>
+              <div class="edu-extra-item">Communicated regularly with executive committee members to ensure smooth event operations</div>
+              <div class="edu-extra-item">Designed promotional materials including posters, flyers and digital content</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── PROJECTS ───────────────────────────────────────────── -->
     <section id="projects" class="section">
       <div class="container">
@@ -1767,6 +1924,18 @@
             panel.style.maxHeight = panel.scrollHeight + "px";
             btn.setAttribute("aria-expanded", "true");
           }
+        });
+      });
+
+      /* experience items */
+      document.querySelectorAll(".exp-item").forEach((el, i) => {
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          delay: i * 0.08,
+          scrollTrigger: { trigger: el, start: "top 88%" },
         });
       });
 
