@@ -1161,6 +1161,158 @@
         cursor: pointer;
       }
 
+      /* ─── GRAPHIC DESIGN ──────────────────────────────────── */
+      #design {
+        border-top: 1px solid var(--border);
+      }
+
+      .design-filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-bottom: 1.75rem;
+      }
+      .design-filter {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 6px 14px;
+        cursor: pointer;
+        transition: border-color 0.15s, color 0.15s, background 0.15s;
+      }
+      .design-filter:hover {
+        border-color: var(--border-h);
+        color: var(--text);
+      }
+      .design-filter.active {
+        color: var(--green);
+        border-color: rgba(74, 222, 128, 0.35);
+        background: var(--green-glow);
+      }
+
+      .design-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      }
+      .design-item {
+        display: block;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: border-color 0.2s;
+      }
+      .design-item.hidden {
+        display: none;
+      }
+      .design-item:hover {
+        border-color: rgba(74, 222, 128, 0.35);
+      }
+      .design-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .design-overlay {
+        position: absolute;
+        inset: auto 0 0 0;
+        padding: 12px;
+        background: linear-gradient(to top, rgba(14, 14, 14, 0.92), transparent);
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 0.2s, transform 0.2s;
+      }
+      .design-item:hover .design-overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .design-title {
+        font-family: var(--serif);
+        font-size: 14px;
+        color: var(--text);
+        line-height: 1.3;
+      }
+      .design-meta {
+        font-size: 10.5px;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+
+      /* lightbox — mirrors .cert-lightbox */
+      .design-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 600;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+      .design-lightbox.active {
+        display: flex;
+      }
+      .design-lightbox-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.78);
+        backdrop-filter: blur(4px);
+      }
+      .design-lightbox-panel {
+        position: relative;
+        z-index: 1;
+        background: var(--surface2);
+        border: 1px solid var(--border-h);
+        border-radius: 12px;
+        max-width: 90vw;
+        max-height: 88vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+      }
+      .design-lightbox-panel img {
+        max-width: 88vw;
+        max-height: 74vh;
+        display: block;
+      }
+      .design-lightbox-caption {
+        padding: 14px 16px;
+      }
+      .design-lightbox-caption .design-title {
+        font-size: 16px;
+      }
+      .design-lightbox-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--border-h);
+        background: rgba(14, 14, 14, 0.7);
+        color: var(--text);
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      @media (max-width:700px){
+        .design-grid{
+          grid-template-columns:repeat(2,1fr);
+        }
+      }
+
       /* ─── PROJECTS ────────────────────────────────────────────── */
       #projects {
         border-top: 1px solid var(--border);
@@ -1602,9 +1754,11 @@
           <li><a href="#home">home</a></li>
           <li><a href="#about">about</a></li>
           <li><a href="#education">education</a></li>
-          <li><a href="#experience">experience</a></li>
-          <li><a href="#projects">projects</a></li>
           <li><a href="#certifications">certifications</a></li>
+          <li><a href="#experience">experience</a></li>
+          <li><a href="#design">design</a></li>
+          <li><a href="#projects">projects</a></li>
+          <li><a href="#skills">skills</a></li>
           <li><a href="#contact">contact</a></li>
         </ul>
       </div>
@@ -1914,64 +2068,6 @@
                   <div class="edu-extra-item">Excellence in English, Technology & Principal Awards</div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ─── EXPERIENCE ─────────────────────────────────────── -->
-    <section id="experience" class="section">
-      <div class="container">
-        <div class="section-label">experience</div>
-        <div class="exp-list">
-          <!-- GRAPHIC DESIGNER — CURRENT -->
-          <div class="exp-item exp-current">
-            <div class="exp-top">
-              <div class="exp-left">
-                <div class="exp-dates">DEC 2025 — CURRENT</div>
-                <div class="exp-role">Graphic Designer <em>(Voluntary)</em></div>
-                <div class="exp-org">Finance Society - University of KwaZulu-Natal</div>
-              </div>
-              <span class="work-status live">current</span>
-            </div>
-            <div class="edu-extra">
-              <div class="edu-extra-item">Designed professional content using Canva for social media platforms aligned with the society's brand</div>
-              <div class="edu-extra-item">Collaborated with executive members to develop <a href="https://www.linkedin.com/posts/ukzn-finance-society_finsoc-pulse-activity-7466721340335599617-l3B_?utm_source=share&utm_medium=member_desktop&rcm=ACoAAESi2q0Bwi1yPrGyyQ8fX0PFJs0mn0_gH5Y" target="_blank" rel="noopener" class="edu-inline-link">Finsoc Pulse (Magazine)</a> for Semester 1</div>
-              <div class="edu-extra-item">Managed multiple design projects efficiently under tight deadlines</div>
-              <div class="edu-extra-item">Assisted with recruitment campaigns and attended meetings</div>
-            </div>
-          </div>
-
-          <!-- STATISTICS TUTOR -->
-          <div class="exp-item">
-            <div class="exp-top">
-              <div class="exp-left">
-                <div class="exp-dates">FEB — MAY 2026</div>
-                <div class="exp-role">2nd Year Statistics Tutor <em>(Part-Time)</em></div>
-                <div class="exp-org">University of KwaZulu-Natal</div>
-              </div>
-            </div>
-            <div class="edu-extra">
-              <div class="edu-extra-item">Selected as a tutor after achieving 84% in STAT243: Data Mining using Machine Learning (2025)</div>
-              <div class="edu-extra-item">Led weekly tutorials, answered student questions, marked tutorial work, provided feedback</div>
-              <div class="edu-extra-item">Created slides and quizzes, assisted with test invigilation, and demonstrated MS Excel techniques</div>
-            </div>
-          </div>
-
-          <!-- STEM MANAGER -->
-          <div class="exp-item">
-            <div class="exp-top">
-              <div class="exp-left">
-                <div class="exp-dates">2024 — JAN 2025</div>
-                <div class="exp-role">STEM Manager <em>(Voluntary)</em></div>
-                <div class="exp-org">Tech Society - University of KwaZulu-Natal</div>
-              </div>
-            </div>
-            <div class="edu-extra">
-              <div class="edu-extra-item">Led initiatives for 450+ members, organizing events to help members obtain STEM course certificates</div>
-              <div class="edu-extra-item">Communicated regularly with executive committee members to ensure smooth event operations</div>
-              <div class="edu-extra-item">Designed promotional materials including posters, flyers and digital content</div>
             </div>
           </div>
         </div>
@@ -2700,6 +2796,138 @@
       </div>
     </section>
 
+    <!-- ─── EXPERIENCE ─────────────────────────────────────── -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-label">experience</div>
+        <div class="exp-list">
+          <!-- GRAPHIC DESIGNER — CURRENT -->
+          <div class="exp-item exp-current">
+            <div class="exp-top">
+              <div class="exp-left">
+                <div class="exp-dates">DEC 2025 — CURRENT</div>
+                <div class="exp-role">Graphic Designer <em>(Voluntary)</em></div>
+                <div class="exp-org">Finance Society - University of KwaZulu-Natal</div>
+              </div>
+              <span class="work-status live">current</span>
+            </div>
+            <div class="edu-extra">
+              <div class="edu-extra-item">Designed professional content using Canva for social media platforms aligned with the society's brand</div>
+              <div class="edu-extra-item">Collaborated with executive members to develop <a href="https://www.linkedin.com/posts/ukzn-finance-society_finsoc-pulse-activity-7466721340335599617-l3B_?utm_source=share&utm_medium=member_desktop&rcm=ACoAAESi2q0Bwi1yPrGyyQ8fX0PFJs0mn0_gH5Y" target="_blank" rel="noopener" class="edu-inline-link">Finsoc Pulse (Magazine)</a> for Semester 1</div>
+              <div class="edu-extra-item">Managed multiple design projects efficiently under tight deadlines</div>
+              <div class="edu-extra-item">Assisted with recruitment campaigns and attended meetings</div>
+            </div>
+          </div>
+
+          <!-- STATISTICS TUTOR -->
+          <div class="exp-item">
+            <div class="exp-top">
+              <div class="exp-left">
+                <div class="exp-dates">FEB — MAY 2026</div>
+                <div class="exp-role">2nd Year Statistics Tutor <em>(Part-Time)</em></div>
+                <div class="exp-org">University of KwaZulu-Natal</div>
+              </div>
+            </div>
+            <div class="edu-extra">
+              <div class="edu-extra-item">Selected as a tutor after achieving 84% in STAT243: Data Mining using Machine Learning (2025)</div>
+              <div class="edu-extra-item">Led weekly tutorials, answered student questions, marked tutorial work, provided feedback</div>
+              <div class="edu-extra-item">Created slides and quizzes, assisted with test invigilation, and demonstrated MS Excel techniques</div>
+            </div>
+          </div>
+
+          <!-- STEM MANAGER -->
+          <div class="exp-item">
+            <div class="exp-top">
+              <div class="exp-left">
+                <div class="exp-dates">2024 — JAN 2025</div>
+                <div class="exp-role">STEM Manager <em>(Voluntary)</em></div>
+                <div class="exp-org">Tech Society - University of KwaZulu-Natal</div>
+              </div>
+            </div>
+            <div class="edu-extra">
+              <div class="edu-extra-item">Led initiatives for 450+ members, organizing events to help members obtain STEM course certificates</div>
+              <div class="edu-extra-item">Communicated regularly with executive committee members to ensure smooth event operations</div>
+              <div class="edu-extra-item">Designed promotional materials including posters, flyers and digital content</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── GRAPHIC DESIGN ─────────────────────────────────── -->
+    <section id="design" class="section">
+      <div class="container">
+        <div class="section-label">graphic design</div>
+
+        <div class="design-filters">
+          <button class="design-filter active" data-filter="all">all</button>
+          <button class="design-filter" data-filter="magazine">finsoc pulse</button>
+          <button class="design-filter" data-filter="social">social media</button>
+          <button class="design-filter" data-filter="posters">posters & flyers</button>
+          <button class="design-filter" data-filter="personal">personal projects</button>
+        </div>
+
+        <div class="design-grid" id="design-grid">
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V1).png" data-title="Standard Bank - Market Minds Event Poster (Draft V1)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V1).png" alt="Standard Bank - Market Minds Event Poster (Draft V1)" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V2).png" data-title="Standard Bank - Market Minds Event Poster (Draft V2)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V2).png" alt="Standard Bank - Market Minds Event Poster (Draft V2)" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Standard Bank - Market Minds Event Poster.png" data-title="Standard Bank - Market Minds Event Poster" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Standard Bank - Market Minds Event Poster.png" alt="Standard Bank - Market Minds Event Poster" loading="lazy" />
+          </a>
+
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Future of Finance Event Poster (Draft V1).png" data-title="Future of Finance Event Poster (Draft V1)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Future of Finance Event Poster (Draft V1).png" alt="Future of Finance Event Poster (Draft V1)" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Future of Finance Event Poster (Draft V2).png" data-title="Future of Finance Event Poster (Draft V2)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Future of Finance Event Poster (Draft V2).png" alt="Future of Finance Event Poster (Draft V2)" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Future of Finance Event Poster (Draft V3).png" data-title="Future of Finance Event Poster (Draft V3)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Future of Finance Event Poster (Draft V3).png" alt="Future of Finance Event Poster (Draft V3)" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Future of Finance Event Poster.png" data-title="Future of Finance Event Poster" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Future of Finance Event Poster.png" alt="Future of Finance Event Poster" loading="lazy" />
+          </a>
+
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Absa - Financial Literacy Event Poster.png" data-title="Absa - Financial Literacy Event Poster" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Absa - Financial Literacy Event Poster.png" alt="Absa - Financial Literacy Event Poster" loading="lazy" />
+          </a>
+
+          <!--<a class="design-item" data-category="social" data-src="Graphic Design/Weekly News Updates Post.png" data-title="Weekly News Updates Post" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Weekly News Updates Post.png" alt="Weekly News Updates Post" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="social" data-src="Graphic Design/Monday Market News Post.png" data-title="Monday Market News Post" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Monday Market News Post.png" alt="Monday Market News Post" loading="lazy" />
+          </a>-->
+
+          <!--<a class="design-item" data-category="magazine" data-src="Graphic Design/finsoc-pulse-cover.jpg" data-title="Finsoc Pulse — Cover Design" data-meta="Finance Society UKZN · 2026">
+            <img src="Graphic Design/finsoc-pulse-cover.jpg" alt="Finsoc Pulse Cover" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="social" data-src="Graphic Design/finsoc-social-1.jpg" data-title="Recruitment Campaign Post" data-meta="Finance Society UKZN · 2026">
+            <img src="Graphic Design/finsoc-social-1.jpg" alt="Recruitment Post" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="posters" data-src="Graphic Design/techsoc-poster-1.jpg" data-title="STEM Certificate Drive Poster" data-meta="Tech Society UKZN · 2024">
+            <img src="Graphic Design/techsoc-poster-1.jpg" alt="Tech Society Poster" loading="lazy" />
+          </a>-->
+          
+        </div>
+
+        <div class="design-lightbox" id="design-lightbox">
+          <div class="design-lightbox-backdrop"></div>
+          <div class="design-lightbox-panel">
+            <button class="design-lightbox-close" id="design-lightbox-close" aria-label="Close">&times;</button>
+            <img id="design-lightbox-img" src="" alt="" />
+            <div class="design-lightbox-caption">
+              <div class="design-title" id="design-lightbox-title"></div>
+              <div class="design-meta" id="design-lightbox-meta"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── PROJECTS ───────────────────────────────────────────── -->
     <section id="projects" class="section">
       <div class="container">
@@ -3115,6 +3343,49 @@
         certPopup.style.top = y + "px";
       }
 
+      /* design grid: filters + lightbox + entrance */
+      document.querySelectorAll(".design-item").forEach((el, i) => {
+        gsap.to(el, {
+          opacity: 1, y: 0, duration: 0.6, ease: "power2.out",
+          delay: i * 0.06,
+          scrollTrigger: { trigger: el, start: "top 90%" },
+        });
+      });
+
+      const designFilters = document.querySelectorAll(".design-filter");
+      const designItems = document.querySelectorAll(".design-item");
+      designFilters.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          designFilters.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const filter = btn.dataset.filter;
+          designItems.forEach((item) => {
+            const match = filter === "all" || item.dataset.category === filter;
+            item.classList.toggle("hidden", !match);
+          });
+        });
+      });
+
+      const designLightbox = document.getElementById("design-lightbox");
+      const designLightboxImg = document.getElementById("design-lightbox-img");
+      const designLightboxTitle = document.getElementById("design-lightbox-title");
+      const designLightboxMeta = document.getElementById("design-lightbox-meta");
+      document.getElementById("design-lightbox-close").addEventListener("click", () => {
+        designLightbox.classList.remove("active");
+      });
+      designLightbox.querySelector(".design-lightbox-backdrop").addEventListener("click", () => {
+        designLightbox.classList.remove("active");
+      });
+      designItems.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          designLightboxImg.src = item.dataset.src;
+          designLightboxTitle.textContent = item.dataset.title;
+          designLightboxMeta.textContent = item.dataset.meta;
+          designLightbox.classList.add("active");
+        });
+      });
+
       /* experience items */
       document.querySelectorAll(".exp-item").forEach((el, i) => {
         gsap.to(el, {
@@ -3168,7 +3439,7 @@
             }
           });
         },
-        { threshold: 0.4 },
+        { threshold: 0.30 },
       );
       sections.forEach((s) => io.observe(s));
     </script>
