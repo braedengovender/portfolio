@@ -868,6 +868,100 @@
         color: var(--green);
       }
 
+      /* ─── CERT CAROUSEL ───────────────────────────────────── */
+      .cert-carousel-wrap {
+        position: relative;
+        margin-top: 2rem;
+      }
+      .cert-carousel {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        padding-bottom: 14px;
+        scroll-snap-type: x proximity;
+      }
+      .cert-carousel::-webkit-scrollbar {
+        height: 6px;
+      }
+      .cert-carousel::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .cert-carousel::-webkit-scrollbar-thumb {
+        background: var(--border-h);
+        border-radius: 3px;
+      }
+      .cert-thumb {
+        flex: 0 0 250px;
+        scroll-snap-align: start;
+        text-decoration: none;
+        display: block;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.4rem 1.4rem 1.2rem;
+        transition:
+          border-color 0.2s,
+          background 0.2s,
+          transform 0.2s;
+      }
+      .cert-thumb:hover {
+        border-color: rgba(74, 222, 128, 0.35);
+        background: var(--surface2);
+        transform: translateY(-2px);
+      }
+      .cert-thumb-frame {
+        display: none;
+      }
+      .cert-thumb-label {
+        font-size: 17px;
+        font-family: var(--serif);
+        color: var(--accent);
+        line-height: 1.35;
+        transition: color 0.15s;
+      }
+      .cert-thumb-meta {
+        font-size: 12.5px;
+        color: var(--text-muted);
+        margin-top: 9px;
+        letter-spacing: 0.02em;
+      }
+
+      /* hover popup preview */
+      .cert-popup {
+        position: fixed;
+        z-index: 500;
+        pointer-events: none;
+        opacity: 0;
+        transform: scale(0.96);
+        transition:
+          opacity 0.15s,
+          transform 0.15s;
+        width: 380px;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--border-h);
+        background: var(--surface2);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      }
+      .cert-popup.active {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .cert-popup img {
+        width: 100%;
+        display: block;
+        max-height: 460px;
+        object-fit: contain;
+        background: #1a1a1a;
+      }
+      .cert-popup-name {
+        font-family: var(--serif);
+        font-size: 16px;
+        color: var(--text);
+        padding: 12px 14px;
+        border-top: 1px solid var(--border);
+      }
+
       .cert-actions {
         margin-top: 1.5rem;
       }
@@ -880,17 +974,42 @@
 
       .cert-row {
         display: flex;
-        align-items: baseline;
+        align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        padding: 7px 0;
+        gap: 14px;
+        padding: 9px 0;
         border-bottom: 1px solid var(--border);
-        font-size: 13px;
+        font-size: 16px;
         text-decoration: none;
         color: var(--text-muted);
         transition:
           color 0.15s,
           padding-left 0.2s;
+      }
+      .cert-row-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+        min-width: 0;
+      }
+      .cert-row-thumb {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #1a1a1a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .cert-row-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
       }
       .cert-row:last-child {
         border-bottom: none;
@@ -905,9 +1024,36 @@
       }
       .cert-row-meta {
         flex-shrink: 0;
-        font-size: 11px;
+        font-size: 12.5px;
         color: var(--text-dim);
         text-align: right;
+      }
+      .cert-row-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+        min-width: 0;
+      }
+      .cert-row-thumb {
+        flex-shrink: 0;
+        height: 50px;
+        width: auto;
+        max-width: 90px;
+        border-radius: 5px;
+        border: 1px solid var(--border);
+        background: #1a1a1a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .cert-row-thumb img {
+        height: 100%;
+        width: auto;
+        max-width: 90px;
+        object-fit: contain;
+        display: block;
       }
       .cert-row:hover .cert-row-meta {
         color: var(--green);
@@ -1735,39 +1881,289 @@
       <div class="container">
         <div class="section-label">certifications</div>
 
-        <div class="cert-featured-grid">
-          <a class="cert-card" href="Certifications/2024/Braeden Govender - Certified Fundamentals in Cybersecurity Certificate - Fortinet Training Institute.pdf" target="_blank" rel="noopener">
-            <div class="cert-card-name">Certified Fundamentals in Cybersecurity</div>
-            <div class="cert-card-meta">Fortinet Training Institute · 2024</div>
-          </a>
-          <a class="cert-card" href="Certifications/2025/Braeden Govender - Data Analytics Job Simulation Certificate - Forage Deloitte.pdf" target="_blank" rel="noopener">
-            <div class="cert-card-name">Data Analytics Job Simulation</div>
-            <div class="cert-card-meta">Forage - Deloitte · 2025</div>
-          </a>
-          <a class="cert-card" href="Certifications/2025/Braeden Govender - Risk Job Simulation Certificate - Forage Goldman Sachs.pdf" target="_blank" rel="noopener">
-            <div class="cert-card-name">Risk Job Simulation</div>
-            <div class="cert-card-meta">Forage - Goldman Sachs · 2025</div>
-          </a>
-          <a class="cert-card" href="Certifications/2025/Braeden Govender - Off-Premise Sales Job Simulation Certificate - Forage Red Bull.pdf" target="_blank" rel="noopener">
-            <div class="cert-card-name">Off-Premise Sales Simulation</div>
-            <div class="cert-card-meta">Forage - Red Bull · 2025</div>
-          </a>
-          <a class="cert-card" href="Certifications/2024/Braeden Govender - Data Science & Analytics Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener">
-            <div class="cert-card-name">Data Science & Analytics</div>
-            <div class="cert-card-meta">HP Life Foundation · 2024</div>
-          </a>
-          <a class="cert-card" href="Certifications/2025/Braeden Govender - SQL Intermediate Certificate - Sololearn.pdf" target="_blank" rel="noopener">
-            <div class="cert-card-name">SQL Intermediate</div>
-            <div class="cert-card-meta">Sololearn · 2025</div>
-          </a>
-          <a class="cert-card" href="Certifications/2024/Braeden Govender - Java Intermediate Certificate - Sololearn.pdf" target="_blank" rel="noopener">
-            <div class="cert-card-name">Java Intermediate</div>
-            <div class="cert-card-meta">Sololearn · 2024</div>
-          </a>
-          <a class="cert-card" href="Certifications/2025/Braeden Govender - Game Development with AI Certificate - Mimo.pdf" target="_blank" rel="noopener">
-            <div class="cert-card-name">Game Development with AI</div>
-            <div class="cert-card-meta">Mimo · 2025</div>
-          </a>
+        <div class="cert-carousel-wrap">
+          <div class="cert-carousel" id="cert-carousel">
+            <a class="cert-thumb" href="Certifications/2026/Braeden Govender - Introduction to C++ Certificate - Sololearn.jpg" target="_blank" rel="noopener" data-name="Introduction to C++">
+              <div class="cert-thumb-frame"><img alt="Introduction to C++" /></div>
+              <div class="cert-thumb-label">Introduction to C++</div>
+              <div class="cert-thumb-meta">Sololearn · 2026</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Introduction to SQL Certificate - Sololearn.pdf" target="_blank" rel="noopener" data-name="Introduction to SQL">
+              <div class="cert-thumb-frame"><img alt="Introduction to SQL" /></div>
+              <div class="cert-thumb-label">Introduction to SQL</div>
+              <div class="cert-thumb-meta">Sololearn · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - SQL Intermediate Certificate - Sololearn.pdf" target="_blank" rel="noopener" data-name="SQL Intermediate">
+              <div class="cert-thumb-frame"><img alt="SQL Intermediate" /></div>
+              <div class="cert-thumb-label">SQL Intermediate</div>
+              <div class="cert-thumb-meta">Sololearn · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Hour of Code Certificate - AI for Oceans Code.org.pdf" target="_blank" rel="noopener" data-name="Hour of Code">
+              <div class="cert-thumb-frame"><img alt="Hour of Code" /></div>
+              <div class="cert-thumb-label">Hour of Code</div>
+              <div class="cert-thumb-meta">AI for Oceans · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Game Development with AI Certificate - Mimo.pdf" target="_blank" rel="noopener" data-name="Game Development with AI">
+              <div class="cert-thumb-frame"><img alt="Game Development with AI" /></div>
+              <div class="cert-thumb-label">Game Development with AI</div>
+              <div class="cert-thumb-meta">Mimo · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Data Analytics Job Simulation Certificate - Forage Deloitte.pdf" target="_blank" rel="noopener" data-name="Data Analytics Job Simulation">
+              <div class="cert-thumb-frame"><img alt="Data Analytics Job Simulation" /></div>
+              <div class="cert-thumb-label">Data Analytics Job Simulation</div>
+              <div class="cert-thumb-meta">Forage - Deloitte · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Java Intermediate Certificate - Sololearn.pdf" target="_blank" rel="noopener" data-name="Java Intermediate">
+              <div class="cert-thumb-frame"><img alt="Java Intermediate" /></div>
+              <div class="cert-thumb-label">Java Intermediate</div>
+              <div class="cert-thumb-meta">Sololearn · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Tech for Everyone Certificate - Sololearn.pdf" target="_blank" rel="noopener" data-name="Tech for Everyone">
+              <div class="cert-thumb-frame"><img alt="Tech for Everyone" /></div>
+              <div class="cert-thumb-label">Tech for Everyone</div>
+              <div class="cert-thumb-meta">Sololearn · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - Introduction to Java Certificate - Sololearn.pdf" target="_blank" rel="noopener" data-name="Introduction to Java">
+              <div class="cert-thumb-frame"><img alt="Introduction to Java" /></div>
+              <div class="cert-thumb-label">Introduction to Java</div>
+              <div class="cert-thumb-meta">Sololearn · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - Introduction to JavaScript Certificate - Sololearn.pdf" target="_blank" rel="noopener" data-name="Introduction to JavaScript">
+              <div class="cert-thumb-frame"><img alt="Introduction to JavaScript" /></div>
+              <div class="cert-thumb-label">Introduction to JavaScript</div>
+              <div class="cert-thumb-meta">Sololearn · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - SQL (Scanned) Certificate - Mimo.pdf" target="_blank" rel="noopener" data-name="SQL">
+              <div class="cert-thumb-frame"><img alt="SQL" /></div>
+              <div class="cert-thumb-label">SQL</div>
+              <div class="cert-thumb-meta">Mimo · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - Python (Scanned) Certificate - Mimo.pdf" target="_blank" rel="noopener" data-name="Python">
+              <div class="cert-thumb-frame"><img alt="Python" /></div>
+              <div class="cert-thumb-label">Python</div>
+              <div class="cert-thumb-meta">Mimo · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Introduction to Computational Thinking Certificate - Absa ReadytoWork.pdf" target="_blank" rel="noopener" data-name="Introduction to Computational Thinking">
+              <div class="cert-thumb-frame"><img alt="Introduction to Computational Thinking" /></div>
+              <div class="cert-thumb-label">Introduction to Computational Thinking</div>
+              <div class="cert-thumb-meta">Absa ReadytoWork · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Basic Introduction to Digital Literacy Certificate - Absa ReadytoWork.pdf" target="_blank" rel="noopener" data-name="Basic Introduction to Digital Literacy">
+              <div class="cert-thumb-frame"><img alt="Basic Introduction to Digital Literacy" /></div>
+              <div class="cert-thumb-label">Basic Introduction to Digital Literacy</div>
+              <div class="cert-thumb-meta">Absa ReadytoWork · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Introduction to the Threat Landscape Certificate - Fortinet Training Institute.pdf" target="_blank" rel="noopener" data-name="Introduction to the Threat Landscape">
+              <div class="cert-thumb-frame"><img alt="Introduction to the Threat Landscape" /></div>
+              <div class="cert-thumb-label">Introduction to the Threat Landscape</div>
+              <div class="cert-thumb-meta">Fortinet Training Institute · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Getting Started in Cybersecurity Certificate - Fortinet Training Institute.pdf" target="_blank" rel="noopener" data-name="Getting Started in Cybersecurity">
+              <div class="cert-thumb-frame"><img alt="Getting Started in Cybersecurity" /></div>
+              <div class="cert-thumb-label">Getting Started in Cybersecurity</div>
+              <div class="cert-thumb-meta">Fortinet Training Institute · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Certified Fundamentals in Cybersecurity Certificate - Fortinet Training Institute.pdf" target="_blank" rel="noopener" data-name="Certified Fundamentals in Cybersecurity">
+              <div class="cert-thumb-frame"><img alt="Certified Fundamentals in Cybersecurity" /></div>
+              <div class="cert-thumb-label">Certified Fundamentals in Cybersecurity</div>
+              <div class="cert-thumb-meta">Fortinet Training Institute · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Introduction to Cybersecurity Awareness Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener" data-name="Introduction to Cybersecurity Awareness">
+              <div class="cert-thumb-frame"><img alt="Introduction to Cybersecurity Awareness" /></div>
+              <div class="cert-thumb-label">Introduction to Cybersecurity Awareness</div>
+              <div class="cert-thumb-meta">HP Life Foundation · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Consumer Financial Education Certificate - Absa ReadytoWork.pdf" target="_blank" rel="noopener" data-name="Consumer Financial Education">
+              <div class="cert-thumb-frame"><img alt="Consumer Financial Education" /></div>
+              <div class="cert-thumb-label">Consumer Financial Education</div>
+              <div class="cert-thumb-meta">Absa ReadytoWork · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Off-Premise Sales Job Simulation Certificate - Forage Red Bull.pdf" target="_blank" rel="noopener" data-name="Off-Premise Sales Simulation">
+              <div class="cert-thumb-frame"><img alt="Off-Premise Sales Simulation" /></div>
+              <div class="cert-thumb-label">Off-Premise Sales Simulation</div>
+              <div class="cert-thumb-meta">Forage - Red Bull · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Risk Job Simulation Certificate - Forage Goldman Sachs.pdf" target="_blank" rel="noopener" data-name="Risk Job Simulation">
+              <div class="cert-thumb-frame"><img alt="Risk Job Simulation" /></div>
+              <div class="cert-thumb-label">Risk Job Simulation</div>
+              <div class="cert-thumb-meta">Forage - Goldman Sachs · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Basics of Stock Market Certificate - Cursa Zerodha Varsity.png" target="_blank" rel="noopener" data-name="Basics of Stock Market">
+              <div class="cert-thumb-frame"><img alt="Basics of Stock Market" /></div>
+              <div class="cert-thumb-label">Basics of Stock Market</div>
+              <div class="cert-thumb-meta">Cursa - Zerodha Varsity · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Social Media Marketing Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener" data-name="Social Media Marketing">
+              <div class="cert-thumb-frame"><img alt="Social Media Marketing" /></div>
+              <div class="cert-thumb-label">Social Media Marketing</div>
+              <div class="cert-thumb-meta">HP Life Foundation · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Basics of Finance Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener" data-name="Basics of Finance">
+              <div class="cert-thumb-frame"><img alt="Basics of Finance" /></div>
+              <div class="cert-thumb-label">Basics of Finance</div>
+              <div class="cert-thumb-meta">HP Life Foundation · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Presenting Data Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener" data-name="Presenting Data">
+              <div class="cert-thumb-frame"><img alt="Presenting Data" /></div>
+              <div class="cert-thumb-label">Presenting Data</div>
+              <div class="cert-thumb-meta">HP Life Foundation · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Success Mindset Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener" data-name="Success Mindset">
+              <div class="cert-thumb-frame"><img alt="Success Mindset" /></div>
+              <div class="cert-thumb-label">Success Mindset</div>
+              <div class="cert-thumb-meta">HP Life Foundation · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Data Science & Analytics Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener" data-name="Data Science & Analytics">
+              <div class="cert-thumb-frame"><img alt="Data Science & Analytics" /></div>
+              <div class="cert-thumb-label">Data Science & Analytics</div>
+              <div class="cert-thumb-meta">HP Life Foundation · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Social Entrepreneurship Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener" data-name="Social Entrepreneurship">
+              <div class="cert-thumb-frame"><img alt="Social Entrepreneurship" /></div>
+              <div class="cert-thumb-label">Social Entrepreneurship</div>
+              <div class="cert-thumb-meta">HP Life Foundation · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - 3D Printing Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener" data-name="3D Printing">
+              <div class="cert-thumb-frame"><img alt="3D Printing" /></div>
+              <div class="cert-thumb-label">3D Printing</div>
+              <div class="cert-thumb-meta">HP Life Foundation · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Swipe Smart Master your Credit Card Certificate - Capitec MoneyUp Academy.pdf" target="_blank" rel="noopener" data-name="Swipe Smart: Master your Credit Card">
+              <div class="cert-thumb-frame"><img alt="Swipe Smart" /></div>
+              <div class="cert-thumb-label">Swipe Smart: Master your Credit Card</div>
+              <div class="cert-thumb-meta">Capitec MoneyUp Academy · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Introduction to Crypto Certificate - EasyEquities Academy.pdf" target="_blank" rel="noopener" data-name="Introduction to Crypto">
+              <div class="cert-thumb-frame"><img alt="Introduction to Crypto" /></div>
+              <div class="cert-thumb-label">Introduction to Crypto</div>
+              <div class="cert-thumb-meta">EasyEquities Academy · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - The Role of AI in Investing Certificate - EasyEquities Academy.pdf" target="_blank" rel="noopener" data-name="The Role of AI in Investing">
+              <div class="cert-thumb-frame"><img alt="The Role of AI in Investing" /></div>
+              <div class="cert-thumb-label">The Role of AI in Investing</div>
+              <div class="cert-thumb-meta">EasyEquities Academy · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - ETF Basics Certificate - EasyEquities Academy.pdf" target="_blank" rel="noopener" data-name="ETF Basics">
+              <div class="cert-thumb-frame"><img alt="ETF Basics" /></div>
+              <div class="cert-thumb-label">ETF Basics</div>
+              <div class="cert-thumb-meta">EasyEquities Academy · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Comparing ETFs and Unit Trusts Certificate - EasyEquities Academy.pdf" target="_blank" rel="noopener" data-name="Comparing ETFs and Unit Trusts">
+              <div class="cert-thumb-frame"><img alt="Comparing ETFs and Unit Trusts" /></div>
+              <div class="cert-thumb-label">Comparing ETFs and Unit Trusts</div>
+              <div class="cert-thumb-meta">EasyEquities Academy · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Introduction to EasyProperties Certificate - EasyEquities Academy.pdf" target="_blank" rel="noopener" data-name="Introduction to EasyProperties">
+              <div class="cert-thumb-frame"><img alt="Introduction to EasyProperties" /></div>
+              <div class="cert-thumb-label">Introduction to EasyProperties</div>
+              <div class="cert-thumb-meta">EasyEquities Academy · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Credit Tool Or Trap Certificate - Capitec Learn Better Academy.pdf" target="_blank" rel="noopener" data-name="Credit: Tool or Trap?">
+              <div class="cert-thumb-frame"><img alt="Credit: Tool or Trap?" /></div>
+              <div class="cert-thumb-label">Credit: Tool or Trap?</div>
+              <div class="cert-thumb-meta">Capitec MoneyUp Academy · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Emergency Strategies (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener" data-name="Emergency Strategies — Cum Laude">
+              <div class="cert-thumb-frame"><img alt="Emergency Strategies" /></div>
+              <div class="cert-thumb-label">Emergency Strategies</div>
+              <div class="cert-thumb-meta">Old Mutual Moneyversity · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Saving and Investing (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener" data-name="Saving and Investing — Cum Laude">
+              <div class="cert-thumb-frame"><img alt="Saving and Investing" /></div>
+              <div class="cert-thumb-label">Saving and Investing</div>
+              <div class="cert-thumb-meta">Old Mutual Moneyversity · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Tax and You (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener" data-name="Tax and You — Cum Laude">
+              <div class="cert-thumb-frame"><img alt="Tax and You" /></div>
+              <div class="cert-thumb-label">Tax and You</div>
+              <div class="cert-thumb-meta">Old Mutual Moneyversity · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Credit and Debt (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener" data-name="Credit and Debt — Cum Laude">
+              <div class="cert-thumb-frame"><img alt="Credit and Debt" /></div>
+              <div class="cert-thumb-label">Credit and Debt</div>
+              <div class="cert-thumb-meta">Old Mutual Moneyversity · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - Get Debt Smart Certificate - Capitec Learn Better Academy.pdf" target="_blank" rel="noopener" data-name="Get Debt Smart">
+              <div class="cert-thumb-frame"><img alt="Get Debt Smart" /></div>
+              <div class="cert-thumb-label">Get Debt Smart</div>
+              <div class="cert-thumb-meta">Capitec Live Better Academy · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - Becoming Money Smart (Masters) Certificate - Capitec Learn Better Academy.pdf" target="_blank" rel="noopener" data-name="Becoming Money Smart — Masters">
+              <div class="cert-thumb-frame"><img alt="Becoming Money Smart" /></div>
+              <div class="cert-thumb-label">Becoming Money Smart</div>
+              <div class="cert-thumb-meta">Capitec Live Better Academy · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - 7 Money Habits For Financial Success (Masters) Certificate - Capitec Learn Better Academy.pdf" target="_blank" rel="noopener" data-name="7 Money Habits — Masters">
+              <div class="cert-thumb-frame"><img alt="7 Money Habits" /></div>
+              <div class="cert-thumb-label">7 Money Habits for Financial Success</div>
+              <div class="cert-thumb-meta">Capitec Live Better Academy · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - Building A Credit Score (Masters) Certificate - Capitec Learn Better Academy.pdf" target="_blank" rel="noopener" data-name="Building a Credit Score — Masters">
+              <div class="cert-thumb-frame"><img alt="Building a Credit Score" /></div>
+              <div class="cert-thumb-label">Building a Credit Score</div>
+              <div class="cert-thumb-meta">Capitec Live Better Academy · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - Clever Ways to Repay Debt Certificate - Capitec Live Better Academy.pdf" target="_blank" rel="noopener" data-name="Clever Ways to Repay Debt — Masters">
+              <div class="cert-thumb-frame"><img alt="Clever Ways to Repay Debt" /></div>
+              <div class="cert-thumb-label">Clever Ways to Repay Debt</div>
+              <div class="cert-thumb-meta">Capitec Live Better Academy · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - Budgeting 101 (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener" data-name="Budgeting 101 — Cum Laude">
+              <div class="cert-thumb-frame"><img alt="Budgeting 101" /></div>
+              <div class="cert-thumb-label">Budgeting 101</div>
+              <div class="cert-thumb-meta">Old Mutual Moneyversity · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - Financial Tips (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener" data-name="Financial Tips — Cum Laude">
+              <div class="cert-thumb-frame"><img alt="Financial Tips" /></div>
+              <div class="cert-thumb-label">Financial Tips</div>
+              <div class="cert-thumb-meta">Old Mutual Moneyversity · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - First Day on the Job (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener" data-name="First Day on the Job — Cum Laude">
+              <div class="cert-thumb-frame"><img alt="First Day on the Job" /></div>
+              <div class="cert-thumb-label">First Day on the Job</div>
+              <div class="cert-thumb-meta">Old Mutual Moneyversity · 2023</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Canva Essentials Certificate - Canva Design School.pdf" target="_blank" rel="noopener" data-name="Canva Essentials">
+              <div class="cert-thumb-frame"><img alt="Canva Essentials" /></div>
+              <div class="cert-thumb-label">Canva Essentials</div>
+              <div class="cert-thumb-meta">Canva Design School · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Graphic Design Essentials Certificate - Canva Design School.pdf" target="_blank" rel="noopener" data-name="Graphic Design Essentials">
+              <div class="cert-thumb-frame"><img alt="Graphic Design Essentials" /></div>
+              <div class="cert-thumb-label">Graphic Design Essentials</div>
+              <div class="cert-thumb-meta">Canva Design School · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Understanding Plagiarism Certificate - University of KwaZulu-Natal.pdf" target="_blank" rel="noopener" data-name="Understanding Plagiarism">
+              <div class="cert-thumb-frame"><img alt="Understanding Plagiarism" /></div>
+              <div class="cert-thumb-label">Understanding Plagiarism</div>
+              <div class="cert-thumb-meta">University of KwaZulu-Natal · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2025/Braeden Govender - Digital Learning Certificate - University of KwaZulu-Natal.pdf" target="_blank" rel="noopener" data-name="Digital Learning">
+              <div class="cert-thumb-frame"><img alt="Digital Learning" /></div>
+              <div class="cert-thumb-label">Digital Learning</div>
+              <div class="cert-thumb-meta">University of KwaZulu-Natal · 2025</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - NDP English Literacy Certificate - Mancosa SkillMe.pdf" target="_blank" rel="noopener" data-name="NDP English Literacy">
+              <div class="cert-thumb-frame"><img alt="NDP English Literacy" /></div>
+              <div class="cert-thumb-label">NDP English Literacy</div>
+              <div class="cert-thumb-meta">Mancosa SkillMe · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2024/Braeden Govender - Night School Certificate - Volkswagen.pdf" target="_blank" rel="noopener" data-name="Night School">
+              <div class="cert-thumb-frame"><img alt="Night School" /></div>
+              <div class="cert-thumb-label">Night School</div>
+              <div class="cert-thumb-meta">Volkswagen · 2024</div>
+            </a>
+            <a class="cert-thumb" href="Certifications/2023/Braeden Govender - Tech Society Mentorship Programme Certificate - Tech Society University of KwaZulu-Natal.pdf" target="_blank" rel="noopener" data-name="Tech Society Mentorship Programme">
+              <div class="cert-thumb-frame"><img alt="Tech Society Mentorship Programme" /></div>
+              <div class="cert-thumb-label">Tech Society Mentorship Programme</div>
+              <div class="cert-thumb-meta">Tech Society - UKZN · 2023</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="cert-popup" id="cert-popup">
+          <img id="cert-popup-img" src="" alt="" />
+          <div class="cert-popup-name" id="cert-popup-name"></div>
         </div>
 
         <div class="cert-actions">
@@ -1783,51 +2179,87 @@
             <div class="edu-year-group">
               <div class="edu-year-label">programming & data analytics</div>
               <a class="cert-row" href="Certifications/2026/Braeden Govender - Introduction to C++ Certificate - Sololearn.jpg" target="_blank" rel="noopener">
-                <span class="cert-row-name">Introduction to C++</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Introduction to C++</span>
+                </div>
                 <span class="cert-row-meta">Sololearn · 2026</span>
               </a>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Introduction to SQL Certificate - Sololearn.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Introduction to SQL</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Introduction to SQL</span>
+                </div>
                 <span class="cert-row-meta">Sololearn · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - SQL Intermediate Certificate - Sololearn.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">SQL Intermediate</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">SQL Intermediate</span>
+                </div>
                 <span class="cert-row-meta">Sololearn · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Hour of Code Certificate - AI for Oceans Code.org.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Hour of Code</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Hour of Code</span>
+                </div>
                 <span class="cert-row-meta">AI for Oceans · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Game Development with AI Certificate - Mimo.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Game Development with AI</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Game Development with AI</span>
+                </div>
                 <span class="cert-row-meta">Mimo · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Data Analytics Job Simulation Certificate - Forage Deloitte.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Data Analytics Job Simulation</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Data Analytics Job Simulation</span>
+                </div>
                 <span class="cert-row-meta">Forage - Deloitte · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Java Intermediate Certificate - Sololearn.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Java Intermediate</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Java Intermediate</span>
+                </div>
                 <span class="cert-row-meta">Sololearn · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Tech for Everyone Certificate - Sololearn.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Tech for Everyone</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Tech for Everyone</span>
+                </div>
                 <span class="cert-row-meta">Sololearn · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - Introduction to Java Certificate - Sololearn.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Introduction to Java</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Introduction to Java</span>
+                </div>
                 <span class="cert-row-meta">Sololearn · 2023</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - Introduction to JavaScript Certificate - Sololearn.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Introduction to JavaScript</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Introduction to JavaScript</span>
+                </div>
                 <span class="cert-row-meta">Sololearn · 2023</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - SQL (Scanned) Certificate - Mimo.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">SQL</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">SQL</span>
+                </div>
                 <span class="cert-row-meta">Mimo · 2023</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - Python (Scanned) Certificate - Mimo.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Python</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Python</span>
+                </div>
                 <span class="cert-row-meta">Mimo · 2023</span>
               </a>
             </div>
@@ -1835,27 +2267,45 @@
             <div class="edu-year-group">
               <div class="edu-year-label">cybersecurity & digital literacy</div>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Introduction to Computational Thinking Certificate - Absa ReadytoWork.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Introduction to Computational Thinking</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Introduction to Computational Thinking</span>
+                </div>
                 <span class="cert-row-meta">Absa ReadytoWork · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Basic Introduction to Digital Literacy Certificate - Absa ReadytoWork.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Basic Introduction to Digital Literacy</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Basic Introduction to Digital Literacy</span>
+                </div>
                 <span class="cert-row-meta">Absa ReadytoWork · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Introduction to the Threat Landscape Certificate - Fortinet Training Institute.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Introduction to the Threat Landscape</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Introduction to the Threat Landscape</span>
+                </div>
                 <span class="cert-row-meta">Fortinet Training Institute · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Getting Started in Cybersecurity Certificate - Fortinet Training Institute.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Getting Started in Cybersecurity</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Getting Started in Cybersecurity</span>
+                </div>
                 <span class="cert-row-meta">Fortinet Training Institute · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Certified Fundamentals in Cybersecurity Certificate - Fortinet Training Institute.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Certified Fundamentals in Cybersecurity</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Certified Fundamentals in Cybersecurity</span>
+                </div>
                 <span class="cert-row-meta">Fortinet Training Institute · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Introduction to Cybersecurity Awareness Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Introduction to Cybersecurity Awareness</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Introduction to Cybersecurity Awareness</span>
+                </div>
                 <span class="cert-row-meta">HP Life Foundation · 2024</span>
               </a>
             </div>
@@ -1863,123 +2313,213 @@
             <div class="edu-year-group">
               <div class="edu-year-label">finance, investing & professional skills</div>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Consumer Financial Education Certificate - Absa ReadytoWork.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Consumer Financial Education</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Consumer Financial Education</span>
+                </div>
                 <span class="cert-row-meta">Absa ReadytoWork · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Off-Premise Sales Job Simulation Certificate - Forage Red Bull.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Off-Premise Sales Simulation</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Off-Premise Sales Simulation</span>
+                </div>
                 <span class="cert-row-meta">Forage - Red Bull · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Risk Job Simulation Certificate - Forage Goldman Sachs.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Risk Job Simulation</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Risk Job Simulation</span>
+                </div>
                 <span class="cert-row-meta">Forage - Goldman Sachs · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Basics of Stock Market Certificate - Cursa Zerodha Varsity.png" target="_blank" rel="noopener">
-                <span class="cert-row-name">Basics of Stock Market</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Basics of Stock Market</span>
+                </div>
                 <span class="cert-row-meta">Cursa - Zerodha Varsity · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Social Media Marketing Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Social Media Marketing</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Social Media Marketing</span>
+                </div>
                 <span class="cert-row-meta">HP Life Foundation · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Basics of Finance Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Basics of Finance</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Basics of Finance</span>
+                </div>
                 <span class="cert-row-meta">HP Life Foundation · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Presenting Data Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Presenting Data</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Presenting Data</span>
+                </div>
                 <span class="cert-row-meta">HP Life Foundation · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Success Mindset Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Success Mindset</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Success Mindset</span>
+                </div>
                 <span class="cert-row-meta">HP Life Foundation · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Data Science & Analytics Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Data Science & Analytics</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Data Science & Analytics</span>
+                </div>
                 <span class="cert-row-meta">HP Life Foundation · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Social Entrepreneurship Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Social Entrepreneurship</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Social Entrepreneurship</span>
+                </div>
                 <span class="cert-row-meta">HP Life Foundation · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - 3D Printing Certificate - HP Life Foundation.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">3D Printing</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">3D Printing</span>
+                </div>
                 <span class="cert-row-meta">HP Life Foundation · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Swipe Smart Master your Credit Card Certificate - Capitec MoneyUp Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Swipe Smart: Master your Credit Card</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Swipe Smart: Master your Credit Card</span>
+                </div>
                 <span class="cert-row-meta">Capitec MoneyUp Academy · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Introduction to Crypto Certificate - EasyEquities Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Introduction to Crypto</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Introduction to Crypto</span>
+                </div>
                 <span class="cert-row-meta">EasyEquities Academy · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - The Role of AI in Investing Certificate - EasyEquities Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">The Role of AI in Investing</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">The Role of AI in Investing</span>
+                </div>
                 <span class="cert-row-meta">EasyEquities Academy · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - ETF Basics Certificate - EasyEquities Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">ETF Basics</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">ETF Basics</span>
+                </div>
                 <span class="cert-row-meta">EasyEquities Academy · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Comparing ETFs and Unit Trusts Certificate - EasyEquities Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Comparing ETFs and Unit Trusts</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Comparing ETFs and Unit Trusts</span>
+                </div>
                 <span class="cert-row-meta">EasyEquities Academy · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Introduction to EasyProperties Certificate - EasyEquities Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Introduction to EasyProperties</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Introduction to EasyProperties</span>
+                </div>
                 <span class="cert-row-meta">EasyEquities Academy · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Credit Tool Or Trap Certificate - Capitec Learn Better Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Credit: Tool or Trap?</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Credit: Tool or Trap?</span>
+                </div>
                 <span class="cert-row-meta">Capitec MoneyUp Academy · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Emergency Strategies (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Emergency Strategies <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Emergency Strategies <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                </div>
                 <span class="cert-row-meta">Old Mutual Moneyversity · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Saving and Investing (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Saving and Investing <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Saving and Investing <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                </div>
                 <span class="cert-row-meta">Old Mutual Moneyversity · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Tax and You (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Tax and You <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Tax and You <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                </div>
                 <span class="cert-row-meta">Old Mutual Moneyversity · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Credit and Debt (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Credit and Debt <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Credit and Debt <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                </div>
                 <span class="cert-row-meta">Old Mutual Moneyversity · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - Get Debt Smart Certificate - Capitec Learn Better Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Get Debt Smart</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Get Debt Smart</span>
+                </div>
                 <span class="cert-row-meta">Capitec Live Better Academy · 2023</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - Becoming Money Smart (Masters) Certificate - Capitec Learn Better Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Becoming Money Smart <em class="edu-merit" style="display:inline">- Masters</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Becoming Money Smart <em class="edu-merit" style="display:inline">- Masters</em></span>
+                </div>
                 <span class="cert-row-meta">Capitec Live Better Academy · 2023</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - 7 Money Habits For Financial Success (Masters) Certificate - Capitec Learn Better Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">7 Money Habits for Financial Success <em class="edu-merit" style="display:inline">- Masters</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">7 Money Habits for Financial Success <em class="edu-merit" style="display:inline">- Masters</em></span>
+                </div>
                 <span class="cert-row-meta">Capitec Live Better Academy · 2023</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - Building A Credit Score (Masters) Certificate - Capitec Learn Better Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Building a Credit Score <em class="edu-merit" style="display:inline">- Masters</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Building a Credit Score <em class="edu-merit" style="display:inline">- Masters</em></span>
+                </div>
                 <span class="cert-row-meta">Capitec Live Better Academy · 2023</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - Clever Ways to Repay Debt Certificate - Capitec Live Better Academy.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Clever Ways to Repay Debt <em class="edu-merit" style="display:inline">- Masters</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Clever Ways to Repay Debt <em class="edu-merit" style="display:inline">- Masters</em></span>
+                </div>
                 <span class="cert-row-meta">Capitec Live Better Academy · 2023</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - Budgeting 101 (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Budgeting 101 <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Budgeting 101 <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                </div>
                 <span class="cert-row-meta">Old Mutual Moneyversity · 2023</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - Financial Tips (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Financial Tips <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Financial Tips <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                </div>
                 <span class="cert-row-meta">Old Mutual Moneyversity · 2023</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - First Day on the Job (Cum Laude) Certificate - Old Mutual Moneyversity.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">First Day on the Job <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">First Day on the Job <em class="edu-merit" style="display:inline">- Cum Laude</em></span>
+                </div>
                 <span class="cert-row-meta">Old Mutual Moneyversity · 2023</span>
               </a>
             </div>
@@ -1987,11 +2527,17 @@
             <div class="edu-year-group">
               <div class="edu-year-label">design & digital</div>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Canva Essentials Certificate - Canva Design School.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Canva Essentials</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Canva Essentials</span>
+                </div>
                 <span class="cert-row-meta">Canva Design School · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Graphic Design Essentials Certificate - Canva Design School.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Graphic Design Essentials</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Graphic Design Essentials</span>
+                </div>
                 <span class="cert-row-meta">Canva Design School · 2025</span>
               </a>
             </div>
@@ -1999,23 +2545,38 @@
             <div class="edu-year-group">
               <div class="edu-year-label">academic & personal development</div>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Understanding Plagiarism Certificate - University of KwaZulu-Natal.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Understanding Plagiarism</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Understanding Plagiarism</span>
+                </div>
                 <span class="cert-row-meta">University of KwaZulu-Natal · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2025/Braeden Govender - Digital Learning Certificate - University of KwaZulu-Natal.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Digital Learning</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Digital Learning</span>
+                </div>
                 <span class="cert-row-meta">University of KwaZulu-Natal · 2025</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - NDP English Literacy Certificate - Mancosa SkillMe.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">NDP English Literacy</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">NDP English Literacy</span>
+                </div>
                 <span class="cert-row-meta">Mancosa SkillMe · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2024/Braeden Govender - Night School Certificate - Volkswagen.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Night School</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Night School</span>
+                </div>
                 <span class="cert-row-meta">Volkswagen · 2024</span>
               </a>
               <a class="cert-row" href="Certifications/2023/Braeden Govender - Tech Society Mentorship Programme Certificate - Tech Society University of KwaZulu-Natal.pdf" target="_blank" rel="noopener">
-                <span class="cert-row-name">Tech Society Mentorship Programme</span>
+                <div class="cert-row-left">
+                  <div class="cert-row-thumb"><img alt="" /></div>
+                  <span class="cert-row-name">Tech Society Mentorship Programme</span>
+                </div>
                 <span class="cert-row-meta">Tech Society - University of KwaZulu-Natal · 2023</span>
               </a>
             </div>
@@ -2346,6 +2907,55 @@
           }
         });
       });
+
+      /* cert carousel: auto-derive thumbnail path + hover popup */
+      function certThumbSrc(href) {
+        if (/\.(jpe?g|png|webp)$/i.test(href)) return href;
+        return href
+          .replace("Certifications/", "Certifications/Thumbnails/")
+          .replace(/\.pdf$/i, ".jpg");
+      }
+
+      const certPopup = document.getElementById("cert-popup");
+      const certPopupImg = document.getElementById("cert-popup-img");
+      const certPopupName = document.getElementById("cert-popup-name");
+
+      document.querySelectorAll(".cert-thumb").forEach((a) => {
+        const src = certThumbSrc(a.getAttribute("href"));
+        const img = a.querySelector("img");
+        img.src = src;
+        img.loading = "lazy";
+
+        a.addEventListener("mouseenter", () => {
+          certPopupImg.src = src;
+          certPopupName.textContent = a.dataset.name || "";
+          certPopup.classList.add("active");
+        });
+        a.addEventListener("mousemove", (e) => positionCertPopup(e));
+        a.addEventListener("mouseleave", () => {
+          certPopup.classList.remove("active");
+        });
+      });
+
+      document.querySelectorAll(".cert-row").forEach((a) => {
+        const img = a.querySelector(".cert-row-thumb img");
+        if (!img) return;
+        const src = certThumbSrc(a.getAttribute("href"));
+        img.src = src;
+        img.loading = "lazy";
+      });
+
+      function positionCertPopup(e) {
+        const offset = 20;
+        const popupW = 380,
+          popupH = 480;
+        let x = e.clientX + offset;
+        let y = e.clientY + offset;
+        if (x + popupW > window.innerWidth) x = e.clientX - popupW - offset;
+        if (y + popupH > window.innerHeight) y = window.innerHeight - popupH - 10;
+        certPopup.style.left = x + "px";
+        certPopup.style.top = y + "px";
+      }
 
       /* experience items */
       document.querySelectorAll(".exp-item").forEach((el, i) => {
