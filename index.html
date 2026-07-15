@@ -890,6 +890,36 @@
         background: var(--border-h);
         border-radius: 3px;
       }
+      .cert-carousel::-webkit-scrollbar-thumb {
+        background: var(--border-h);
+        border-radius: 3px;
+      }
+      .cert-carousel-arrow {
+        position: absolute;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid var(--border-h);
+        background: rgba(14, 14, 14, 0.85);
+        color: var(--text);
+        font-size: 17px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+        transition: border-color 0.15s, color 0.15s;
+      }
+      .cert-carousel-arrow:hover {
+        border-color: rgba(74, 222, 128, 0.4);
+        color: var(--green);
+      }
+      .cert-carousel-arrow.left { left: -6px; top: 130px; }
+      .cert-carousel-arrow.right { right: -6px; top: 130px; }
+      @media (max-width: 700px) {
+        .cert-carousel-arrow { display: none; }
+      }
       .cert-thumb {
         flex: 0 0 auto;
         scroll-snap-align: start;
@@ -1008,24 +1038,6 @@
         flex: 1;
         min-width: 0;
       }
-      .cert-row-thumb {
-        flex-shrink: 0;
-        width: 40px;
-        height: 40px;
-        border-radius: 5px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: #1a1a1a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .cert-row-thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        display: block;
-      }
       .cert-row:last-child {
         border-bottom: none;
       }
@@ -1052,29 +1064,17 @@
       }
       .cert-row-thumb {
         flex-shrink: 0;
-        height: 50px;
+        height: 46px;
         width: auto;
-        max-width: 90px;
         border-radius: 5px;
         border: 1px solid var(--border);
-        background: #1a1a1a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         overflow: hidden;
+        display: flex;
       }
       .cert-row-thumb img {
         height: 100%;
         width: auto;
-        max-width: 90px;
-        object-fit: contain;
         display: block;
-      }
-      .cert-row-thumb {
-        display: none;
-      }
-      .cert-row-left {
-        gap: 0;
       }
       .cert-row:hover .cert-row-meta {
         color: var(--green);
@@ -1280,10 +1280,85 @@
         flex-direction: column;
         box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
       }
-      .design-lightbox-panel img {
+      .design-lightbox-media {
+        position: relative;
+        background: #1a1a1a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 74vh;
+      }
+      .design-lightbox-media img {
         max-width: 88vw;
         max-height: 74vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
         display: block;
+      }
+      .design-lightbox-media iframe {
+        width: min(88vw, 720px);
+        height: 74vh;
+        border: none;
+        display: block;
+        background: #fff;
+      }
+      .design-slide-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--border-h);
+        background: rgba(14, 14, 14, 0.75);
+        color: var(--text);
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.15s, color 0.15s;
+      }
+      .design-slide-nav:hover {
+        border-color: rgba(74, 222, 128, 0.4);
+        color: var(--green);
+      }
+      .design-slide-nav.prev { left: 12px; }
+      .design-slide-nav.next { right: 12px; }
+      .design-slide-dots {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+      }
+      .design-slide-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: background 0.15s, transform 0.15s;
+      }
+      .design-slide-dot.active {
+        background: var(--green);
+        transform: scale(1.3);
+      }
+      .design-lightbox-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--green);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+      }
+      .design-lightbox-link:hover {
+        text-decoration: underline;
       }
       .design-lightbox-caption {
         padding: 14px 16px;
@@ -1415,6 +1490,141 @@
           opacity 0.2s,
           transform 0.2s;
         flex-shrink: 0;
+      }
+
+      /* project card body (desc, icons, actions) */
+      .work-body {
+        padding: 0 0 1.6rem;
+      }
+      .work-desc {
+        font-size: 13.5px;
+        color: var(--text-muted);
+        line-height: 1.7;
+        max-width: 560px;
+        margin: 8px 0 14px;
+      }
+      .work-icons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .tech-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        opacity: 0.8;
+        transition: opacity 0.15s, transform 0.15s;
+      }
+      .tech-icon:hover {
+        opacity: 1;
+        transform: translateY(-2px);
+      }
+      .work-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .work-action {
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 7px 13px;
+        background: transparent;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: border-color 0.15s, color 0.15s;
+      }
+      .work-action:hover {
+        border-color: rgba(74, 222, 128, 0.4);
+        color: var(--green);
+      }
+      .work-note {
+        font-size: 10.5px;
+        color: var(--text-dim);
+        letter-spacing: 0.02em;
+      }
+
+      /* project lightbox — mirrors design-lightbox, adds video support */
+      .project-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 600;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+      .project-lightbox.active {
+        display: flex;
+      }
+      .project-lightbox-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.78);
+        backdrop-filter: blur(4px);
+      }
+      .project-lightbox-panel {
+        position: relative;
+        z-index: 1;
+        background: var(--surface2);
+        border: 1px solid var(--border-h);
+        border-radius: 12px;
+        max-width: 90vw;
+        max-height: 88vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+      }
+      .project-lightbox-media {
+        position: relative;
+        background: #1a1a1a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 74vh;
+      }
+      .project-lightbox-media img {
+        max-width: 88vw;
+        max-height: 74vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+      .project-lightbox-media video {
+        max-width: 88vw;
+        max-height: 74vh;
+        width: auto;
+        display: block;
+      }
+      .project-lightbox-caption {
+        padding: 14px 16px;
+        font-family: var(--serif);
+        font-size: 16px;
+        color: var(--text);
+      }
+      .project-lightbox-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--border-h);
+        background: rgba(14, 14, 14, 0.7);
+        color: var(--text);
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
       }
 
       /* ─── SKILLS ──────────────────────────────────────────── */
@@ -2080,6 +2290,8 @@
         <div class="section-label">certifications</div>
 
         <div class="cert-carousel-wrap">
+          <button class="cert-carousel-arrow left" aria-label="Scroll left">‹</button>
+          <button class="cert-carousel-arrow right" aria-label="Scroll right">›</button>
           <div class="cert-carousel" id="cert-carousel">
             <a class="cert-thumb" href="Certifications/2026/Braeden Govender - Introduction to C++ Certificate - Sololearn.jpg" target="_blank" rel="noopener" data-name="Introduction to C++">
               <div class="cert-thumb-frame"><img alt="Introduction to C++" /></div>
@@ -2861,21 +3073,42 @@
 
         <div class="design-filters">
           <button class="design-filter active" data-filter="all">all</button>
-          <button class="design-filter" data-filter="magazine">finsoc pulse</button>
           <button class="design-filter" data-filter="social">social media</button>
           <button class="design-filter" data-filter="posters">posters & flyers</button>
-          <button class="design-filter" data-filter="personal">personal projects</button>
+          <button class="design-filter" data-filter="presentations">presentations</button>
+          <button class="design-filter" data-filter="magazine">finsoc pulse</button>
         </div>
 
         <div class="design-grid" id="design-grid">
-          <a class="design-item" data-category="posters" data-src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V1).png" data-title="Standard Bank - Market Minds Event Poster (Draft V1)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
-            <img src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V1).png" alt="Standard Bank - Market Minds Event Poster (Draft V1)" loading="lazy" />
+          <a class="design-item" data-category="social" data-type="slides"
+             data-src="Graphic Design/Finance Society - 2026 Team Introduction/13.jpg"
+             data-slides="Graphic Design/Finance Society - 2026 Team Introduction/0.jpg|Graphic Design/Finance Society - 2026 Team Introduction/1.jpg|Graphic Design/Finance Society - 2026 Team Introduction/2.jpg|Graphic Design/Finance Society - 2026 Team Introduction/3.jpg|Graphic Design/Finance Society - 2026 Team Introduction/4.jpg|Graphic Design/Finance Society - 2026 Team Introduction/5.jpg|Graphic Design/Finance Society - 2026 Team Introduction/6.jpg|Graphic Design/Finance Society - 2026 Team Introduction/7.jpg|Graphic Design/Finance Society - 2026 Team Introduction/8.jpg|Graphic Design/Finance Society - 2026 Team Introduction/9.jpg|Graphic Design/Finance Society - 2026 Team Introduction/10.jpg|Graphic Design/Finance Society - 2026 Team Introduction/11.jpg|Graphic Design/Finance Society - 2026 Team Introduction/12.jpg|Graphic Design/Finance Society - 2026 Team Introduction/13.jpg|Graphic Design/Finance Society - 2026 Team Introduction/14.jpg|Graphic Design/Finance Society - 2026 Team Introduction/15.jpg|Graphic Design/Finance Society - 2026 Team Introduction/16.jpg|Graphic Design/Finance Society - 2026 Team Introduction/17.jpg|Graphic Design/Finance Society - 2026 Team Introduction/18.jpg|Graphic Design/Finance Society - 2026 Team Introduction/19.jpg|Graphic Design/Finance Society - 2026 Team Introduction/20.jpg"
+             data-title="Finance Society - 2026 Team Introduction"
+             data-meta="Finance Society - University of KwaZulu-Natal · 2026"
+             data-linkedin="">
+            <img src="Graphic Design/Finance Society - 2026 Team Introduction/13.jpg" alt="Finance Society - 2026 Team Introduction - Cover" loading="lazy" />
           </a>
-          <a class="design-item" data-category="posters" data-src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V2).png" data-title="Standard Bank - Market Minds Event Poster (Draft V2)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
-            <img src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V2).png" alt="Standard Bank - Market Minds Event Poster (Draft V2)" loading="lazy" />
+        
+          <a class="design-item" data-category="social" data-src="Graphic Design/Weekly News Updates Post.png" data-title="Weekly News Updates Post (Draft)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Weekly News Updates Post.png" alt="Weekly News Updates Post (Draft)" loading="lazy" />
           </a>
-          <a class="design-item" data-category="posters" data-src="Graphic Design/Standard Bank - Market Minds Event Poster.png" data-title="Standard Bank - Market Minds Event Poster" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
-            <img src="Graphic Design/Standard Bank - Market Minds Event Poster.png" alt="Standard Bank - Market Minds Event Poster" loading="lazy" />
+          <a class="design-item" data-category="social" data-src="Graphic Design/Monday Market News Post.png" data-title="Monday Market News Post" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Monday Market News Post.png" alt="Monday Market News Post" loading="lazy" />
+          </a>
+
+          <a class="design-item" data-category="magazine" data-type="slides"
+             data-src="Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/0.jpg"
+             data-slides="Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/0.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/1.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/2.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/3.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/4.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/5.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/6.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/7.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/8.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/9.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/10.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/11.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/12.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/13.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/14.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/15.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/16.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/17.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/18.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/19.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/20.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/21.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/22.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/23.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/24.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/25.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/26.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/27.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/28.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/29.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/30.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/31.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/32.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/33.jpg|Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/34.jpg"
+             data-title="Finsoc Pulse Magazine - Semester 1"
+             data-meta="Finance Society - University of KwaZulu-Natal · 2026"
+             data-linkedin="https://www.linkedin.com/posts/ukzn-finance-society_finsoc-pulse-activity-7466721340335599617-l3B_?utm_source=share&utm_medium=member_desktop&rcm=ACoAAESi2q0Bwi1yPrGyyQ8fX0PFJs0mn0_gH5Y">
+            <img src="Graphic Design/Finsoc Pulse Magazine - 2026 - Semester 1/0.jpg" alt="Finsoc Pulse Magazine - 2026 - Semester 1 - Cover Page" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Absa - Financial Literacy Event Poster.png" data-title="Absa - Financial Literacy Event Poster" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Absa - Financial Literacy Event Poster.png" alt="Absa - Financial Literacy Event Poster" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Future of Finance Event Poster.png" data-title="Future of Finance Event Poster" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Future of Finance Event Poster.png" alt="Future of Finance Event Poster" loading="lazy" />
           </a>
 
           <a class="design-item" data-category="posters" data-src="Graphic Design/Future of Finance Event Poster (Draft V1).png" data-title="Future of Finance Event Poster (Draft V1)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
@@ -2887,41 +3120,53 @@
           <a class="design-item" data-category="posters" data-src="Graphic Design/Future of Finance Event Poster (Draft V3).png" data-title="Future of Finance Event Poster (Draft V3)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
             <img src="Graphic Design/Future of Finance Event Poster (Draft V3).png" alt="Future of Finance Event Poster (Draft V3)" loading="lazy" />
           </a>
-          <a class="design-item" data-category="posters" data-src="Graphic Design/Future of Finance Event Poster.png" data-title="Future of Finance Event Poster" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
-            <img src="Graphic Design/Future of Finance Event Poster.png" alt="Future of Finance Event Poster" loading="lazy" />
+
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V1).png" data-title="Standard Bank - Market Minds Event Poster (Draft V1)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V1).png" alt="Standard Bank - Market Minds Event Poster (Draft V1)" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V2).png" data-title="Standard Bank - Market Minds Event Poster (Draft V2)" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Standard Bank - Market Minds Event Poster (Draft V2).png" alt="Standard Bank - Market Minds Event Poster (Draft V2)" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="posters" data-src="Graphic Design/Standard Bank - Market Minds Event Poster.png" data-title="Standard Bank - Market Minds Event Poster" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
+            <img src="Graphic Design/Standard Bank - Market Minds Event Poster.png" alt="Standard Bank - Market Minds Event Poster" loading="lazy" />
           </a>
 
-          <a class="design-item" data-category="posters" data-src="Graphic Design/Absa - Financial Literacy Event Poster.png" data-title="Absa - Financial Literacy Event Poster" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
-            <img src="Graphic Design/Absa - Financial Literacy Event Poster.png" alt="Absa - Financial Literacy Event Poster" loading="lazy" />
+          <a class="design-item" data-category="presentations" data-type="slides"
+             data-src="Graphic Design/Recruitment Presentation/Recruitment Presentation - 0.png"
+             data-slides="Graphic Design/Recruitment Presentation/Recruitment Presentation - 0.png|Graphic Design/Recruitment Presentation/Recruitment Presentation - 1.png|Graphic Design/Recruitment Presentation/Recruitment Presentation - 2.png|Graphic Design/Recruitment Presentation/Recruitment Presentation - 3.png|Graphic Design/Recruitment Presentation/Recruitment Presentation - 4.png|Graphic Design/Recruitment Presentation/Recruitment Presentation - 5.png|Graphic Design/Recruitment Presentation/Recruitment Presentation - 6.png|Graphic Design/Recruitment Presentation/Recruitment Presentation - 7.png|Graphic Design/Recruitment Presentation/Recruitment Presentation - 8.png"
+             data-title="Recruitment Presentation"
+             data-meta="Finance Society - University of KwaZulu-Natal · 2026"
+             data-linkedin="">
+            <img src="Graphic Design/Recruitment Presentation/Recruitment Presentation - 0.png" alt="Recruitment Presentation" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="presentations" data-type="slides"
+             data-src="Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 1.png"
+             data-slides="Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 1.png|Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 2.png|Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 3.png|Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 4.png|Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 5.png|Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 6.png|Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 7.png|Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 8.png|Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 9.png|Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 10.png"
+             data-title="High School Commerce Presentation"
+             data-meta="Finance Society - University of KwaZulu-Natal · 2026"
+             data-linkedin="">
+            <img src="Graphic Design/High School Commerce Presentation/High School Commerce Presentation - 1.png" alt="High School Commerce Presentation" loading="lazy" />
+          </a>
+          <a class="design-item" data-category="presentations" data-type="slides"
+             data-src="Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/0.png"
+             data-slides="Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/0.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/1.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/2.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/3.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/4.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/5.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/6.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/7.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/8.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/9.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/10.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/11.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/12.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/13.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/14.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/15.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/16.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/17.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/18.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/19.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/20.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/21.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/22.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/23.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/24.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/25.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/26.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/27.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/28.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/29.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/30.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/31.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/32.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/33.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/34.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/35.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/36.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/37.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/38.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/39.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/40.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/41.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/42.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/43.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/44.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/45.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/46.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/47.png|Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/48.png"
+             data-title="STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation"
+             data-meta="Statistics Tutoring - University of KwaZulu-Natal · 2026"
+             data-linkedin="">
+            <img src="Graphic Design/STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation/0.png" alt="STAT243 Tutorial 4A + Quiz + Tips & Tricks Presentation" loading="lazy" />
           </a>
 
-          <!--<a class="design-item" data-category="social" data-src="Graphic Design/Weekly News Updates Post.png" data-title="Weekly News Updates Post" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
-            <img src="Graphic Design/Weekly News Updates Post.png" alt="Weekly News Updates Post" loading="lazy" />
-          </a>
-          <a class="design-item" data-category="social" data-src="Graphic Design/Monday Market News Post.png" data-title="Monday Market News Post" data-meta="Finance Society - University of KwaZulu-Natal · 2026">
-            <img src="Graphic Design/Monday Market News Post.png" alt="Monday Market News Post" loading="lazy" />
-          </a>-->
-
-          <!--<a class="design-item" data-category="magazine" data-src="Graphic Design/finsoc-pulse-cover.jpg" data-title="Finsoc Pulse — Cover Design" data-meta="Finance Society UKZN · 2026">
-            <img src="Graphic Design/finsoc-pulse-cover.jpg" alt="Finsoc Pulse Cover" loading="lazy" />
-          </a>
-          <a class="design-item" data-category="social" data-src="Graphic Design/finsoc-social-1.jpg" data-title="Recruitment Campaign Post" data-meta="Finance Society UKZN · 2026">
-            <img src="Graphic Design/finsoc-social-1.jpg" alt="Recruitment Post" loading="lazy" />
-          </a>
-          <a class="design-item" data-category="posters" data-src="Graphic Design/techsoc-poster-1.jpg" data-title="STEM Certificate Drive Poster" data-meta="Tech Society UKZN · 2024">
-            <img src="Graphic Design/techsoc-poster-1.jpg" alt="Tech Society Poster" loading="lazy" />
-          </a>-->
-          
         </div>
 
         <div class="design-lightbox" id="design-lightbox">
           <div class="design-lightbox-backdrop"></div>
           <div class="design-lightbox-panel">
             <button class="design-lightbox-close" id="design-lightbox-close" aria-label="Close">&times;</button>
-            <img id="design-lightbox-img" src="" alt="" />
+            <div class="design-lightbox-media" id="design-lightbox-media"></div>
             <div class="design-lightbox-caption">
               <div class="design-title" id="design-lightbox-title"></div>
               <div class="design-meta" id="design-lightbox-meta"></div>
+              <a class="design-lightbox-link" id="design-lightbox-link" href="#" target="_blank" rel="noopener" style="display:none;">view original post ↗</a>
             </div>
           </div>
         </div>
@@ -2933,84 +3178,153 @@
       <div class="container">
         <div class="section-label">projects</div>
         <div class="work-list">
+
+          <!-- 01 — SAM'S LIQUOR STORE -->
           <div class="work-item">
-            <a href="#" class="work-link">
+            <div class="work-main">
               <div class="work-left">
                 <div class="work-num">01</div>
                 <div class="work-name">
-                  Sam's Liquor Store Point-Of-Sale & Inventory Management System <em>description</em>
+                  Sam's Liquor Store - <em>Point-of-Sale & Inventory Management System</em>
+                </div>
+              </div>
+              <div class="work-right">
+                <div class="work-stack">C# / SQL / .NET</div>
+                <div class="work-meta">
+                  <span class="work-year">2024</span>
+                  <span class="work-status live">active repo</span>
+                </div>
+              </div>
+            </div>
+            <div class="work-body">
+              <p class="work-desc">[Add a 1–2 sentence description: what it does, your role, and what problem it solved for Sam's Liquor Store.]</p>
+              <div class="work-icons">
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="C#" title="C#" />
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-original.svg" alt="SQL Server" title="MS SQL Server" />
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-original.svg" alt="Visual Studio" title="Visual Studio" />
+                
+              </div>
+              <div class="work-actions">
+                <a class="work-action" href="https://github.com/braedengovender/sams-liquor-store" target="_blank" rel="noopener">github ↗</a>
+                <button class="work-action" data-type="slides"
+                  data-slides="Projects/Sams Liquor Store/Slide 01.png|Projects/Sams Liquor Store/Slide 02.png|Projects/Sams Liquor Store/Slide 03.png"
+                  data-title="Sam's Liquor Store — Presentation Slides">view slides</button>
+                <span class="work-note">full commit history</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 — C++ INVENTORY MANAGEMENT -->
+          <div class="work-item">
+            <div class="work-main">
+              <div class="work-left">
+                <div class="work-num">02</div>
+                <div class="work-name">
+                  C++ Inventory Management <em>& Trading System</em>
+                </div>
+              </div>
+              <div class="work-right">
+                <div class="work-stack">C++</div>
+                <div class="work-meta">
+                  <span class="work-year">2024</span>
+                  <span class="work-status">complete</span>
+                </div>
+              </div>
+            </div>
+            <div class="work-body">
+              <p class="work-desc">[Add a 1–2 sentence description: what the system does and what your role/contribution was.]</p>
+              <div class="work-icons">
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++" />
+                <img class="tech-icon" src="Icons/codeblocks.png" alt="Code::Blocks" title="Code::Blocks" />
+              </div>
+              <div class="work-actions">
+                <a class="work-action" href="https://github.com/braedengovender/cpp-inventory-management" target="_blank" rel="noopener">github ↗</a>
+                <button class="work-action" data-type="slides"
+                  data-slides="Projects/CPP Inventory/Slide 01.png|Projects/CPP Inventory/Slide 02.png|Projects/CPP Inventory/Slide 03.png"
+                  data-title="C++ Inventory Management — Presentation Slides">view slides</button>
+                <button class="work-action" data-type="video"
+                  data-video="Projects/CPP Inventory/Demo.mp4"
+                  data-title="C++ Inventory Management — Demo">watch demo</button>
+                <span class="work-note">single upload commit</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 — PERSONAL PORTFOLIO WEBSITE -->
+          <div class="work-item">
+            <div class="work-main">
+              <div class="work-left">
+                <div class="work-num">03</div>
+                <div class="work-name">
+                  Personal Portfolio Website
                 </div>
               </div>
               <div class="work-right">
                 <div class="work-stack">HTML / CSS / JS</div>
                 <div class="work-meta">
-                  <span class="work-year">2024</span>
+                  <span class="work-year">2026</span>
                   <span class="work-status live">live</span>
                 </div>
               </div>
-              <div class="work-arrow">↗</div>
-            </a>
+            </div>
+            <div class="work-body">
+              <p class="work-desc">[Add a 1–2 sentence description — e.g. this very site: built to showcase what a traditional CV can't.]</p>
+              <div class="work-icons">
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" title="HTML5" />
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" title="CSS3" />
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" />
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" title="Visual Studio Code" />
+              </div>
+              <div class="work-actions">
+                <a class="work-action" href="https://github.com/braedengovender/portfolio" target="_blank" rel="noopener">github ↗</a>
+                <span class="work-note">full commit history</span>
+              </div>
+            </div>
           </div>
 
+          <!-- 04 — MASALA MAGIC -->
           <div class="work-item">
-            <a href="#" class="work-link">
-              <div class="work-left">
-                <div class="work-num">02</div>
-                <div class="work-name">
-                  C++ Inventory Management & Trading System <em>description</em>
-                </div>
-              </div>
-              <div class="work-right">
-                <div class="work-stack">React / Node.js</div>
-                <div class="work-meta">
-                  <span class="work-year">2024</span>
-                  <span class="work-status live">live</span>
-                </div>
-              </div>
-              <div class="work-arrow">↗</div>
-            </a>
-          </div>
-
-          <div class="work-item">
-            <a href="#" class="work-link">
-              <div class="work-left">
-                <div class="work-num">03</div>
-                <div class="work-name">
-                  Personal Portfolio Website <em>description</em>
-                </div>
-              </div>
-              <div class="work-right">
-                <div class="work-stack">Python / PostgreSQL</div>
-                <div class="work-meta">
-                  <span class="work-year">2023</span>
-                  <span class="work-status">archived</span>
-                </div>
-              </div>
-              <div class="work-arrow">↗</div>
-            </a>
-          </div>
-
-          <div class="work-item">
-            <a href="#" class="work-link">
+            <div class="work-main">
               <div class="work-left">
                 <div class="work-num">04</div>
                 <div class="work-name">
-                  Masala Magic Point-Of-Sale System <em>description</em>
+                  Masala Magic - <em>Point-of-Sale System</em>
                 </div>
               </div>
               <div class="work-right">
-                <div class="work-stack">Next.js / Supabase</div>
+                <div class="work-stack">C# / SQL / .NET</div>
                 <div class="work-meta">
                   <span class="work-year">2024</span>
-                  <span class="work-status wip">wip</span>
+                  <span class="work-status">complete</span>
                 </div>
               </div>
-              <div class="work-arrow">↗</div>
-            </a>
+            </div>
+            <div class="work-body">
+              <p class="work-desc">[Add a 1–2 sentence description: what the system does and what your role/contribution was.]</p>
+              <div class="work-icons">
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="C#" title="C#" />
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-original.svg" alt="SQL Server" title="MS SQL Server" />
+                <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-original.svg"" alt="Visual Studio" title="Visual Studio" />
+              </div>
+              <div class="work-actions">
+                <a class="work-action" href="https://github.com/braedengovender/masala-magic" target="_blank" rel="noopener">github ↗</a>
+                <span class="work-note">full commit history</span>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
+
+    <div class="project-lightbox" id="project-lightbox">
+      <div class="project-lightbox-backdrop"></div>
+      <div class="project-lightbox-panel">
+        <button class="project-lightbox-close" id="project-lightbox-close" aria-label="Close">&times;</button>
+        <div class="project-lightbox-media" id="project-lightbox-media"></div>
+        <div class="project-lightbox-caption" id="project-lightbox-caption"></div>
+      </div>
+    </div>
 
     <!-- ─── SKILLS ─────────────────────────────────────────── -->
     <section id="skills" class="section">
@@ -3295,7 +3609,7 @@
         const src = certThumbSrc(href);
         const name = certItemName(a);
 
-        const inlineImg = a.querySelector(".cert-thumb-frame img");
+        const inlineImg = a.querySelector(".cert-thumb-frame img, .cert-row-thumb img");
         if (inlineImg) {
           inlineImg.loading = "lazy";
           inlineImg.src = src;
@@ -3305,7 +3619,21 @@
           });
         }
 
-        if (!isTouchDevice) {
+        if (isTouchDevice) {
+          a.addEventListener("click", (e) => {
+            e.preventDefault();
+            openCertLightbox(src, name, href);
+          });
+        }
+      });
+
+      /* hover preview popup — only on the "view all certifications" rows now,
+         the carousel thumbnails are already big enough on their own */
+      if (!isTouchDevice) {
+        document.querySelectorAll(".cert-row").forEach((a) => {
+          const href = a.getAttribute("href");
+          const src = certThumbSrc(href);
+          const name = certItemName(a);
           a.addEventListener("mouseenter", () => {
             certPopupImg.src = src;
             certPopupName.textContent = name;
@@ -3315,20 +3643,16 @@
           a.addEventListener("mouseleave", () => {
             certPopup.classList.remove("active");
           });
-        } else {
-          a.addEventListener("click", (e) => {
-            e.preventDefault();
-            openCertLightbox(src, name, href);
-          });
-        }
-      });
+        });
+      }
 
-      document.querySelectorAll(".cert-row").forEach((a) => {
-        const img = a.querySelector(".cert-row-thumb img");
-        if (!img) return;
-        const src = certThumbSrc(a.getAttribute("href"));
-        img.src = src;
-        img.loading = "lazy";
+      /* carousel scroll arrows */
+      const certCarousel = document.getElementById("cert-carousel");
+      document.querySelectorAll(".cert-carousel-arrow").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const dir = btn.classList.contains("left") ? -1 : 1;
+          certCarousel.scrollBy({ left: dir * certCarousel.clientWidth * 0.8, behavior: "smooth" });
+        });
       });
 
       function positionCertPopup(e) {
@@ -3367,23 +3691,189 @@
       });
 
       const designLightbox = document.getElementById("design-lightbox");
-      const designLightboxImg = document.getElementById("design-lightbox-img");
+      const designLightboxMedia = document.getElementById("design-lightbox-media");
       const designLightboxTitle = document.getElementById("design-lightbox-title");
       const designLightboxMeta = document.getElementById("design-lightbox-meta");
-      document.getElementById("design-lightbox-close").addEventListener("click", () => {
+      const designLightboxLink = document.getElementById("design-lightbox-link");
+
+      let slideState = { images: [], index: 0 };
+
+      function renderSlide() {
+        const img = designLightboxMedia.querySelector(".design-lightbox-slide-img");
+        if (img) img.src = slideState.images[slideState.index];
+        designLightboxMedia.querySelectorAll(".design-slide-dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === slideState.index);
+        });
+      }
+      function goToSlide(delta) {
+        slideState.index =
+          (slideState.index + delta + slideState.images.length) % slideState.images.length;
+        renderSlide();
+      }
+
+      function closeDesignLightbox() {
         designLightbox.classList.remove("active");
-      });
-      designLightbox.querySelector(".design-lightbox-backdrop").addEventListener("click", () => {
-        designLightbox.classList.remove("active");
-      });
+        designLightboxMedia.innerHTML = "";
+      }
+
+      function openDesignLightbox(item) {
+        const type = item.dataset.type || "image";
+        designLightboxTitle.textContent = item.dataset.title || "";
+        designLightboxMeta.textContent = item.dataset.meta || "";
+
+        const link = item.dataset.linkedin || item.dataset.link || "";
+        if (link) {
+          designLightboxLink.href = link;
+          designLightboxLink.textContent = item.dataset.linkText || "view original post ↗";
+          designLightboxLink.style.display = "inline-flex";
+        } else {
+          designLightboxLink.style.display = "none";
+        }
+
+        designLightboxMedia.innerHTML = "";
+
+        if (type === "pdf") {
+          const iframe = document.createElement("iframe");
+          iframe.src = item.dataset.pdf;
+          designLightboxMedia.appendChild(iframe);
+        } else if (type === "slides") {
+          slideState = {
+            images: item.dataset.slides.split("|").map((s) => s.trim()).filter(Boolean),
+            index: 0,
+          };
+          const img = document.createElement("img");
+          img.className = "design-lightbox-slide-img";
+          img.src = slideState.images[0];
+          designLightboxMedia.appendChild(img);
+
+          if (slideState.images.length > 1) {
+            const prevBtn = document.createElement("button");
+            prevBtn.className = "design-slide-nav prev";
+            prevBtn.textContent = "‹";
+            prevBtn.addEventListener("click", () => goToSlide(-1));
+
+            const nextBtn = document.createElement("button");
+            nextBtn.className = "design-slide-nav next";
+            nextBtn.textContent = "›";
+            nextBtn.addEventListener("click", () => goToSlide(1));
+
+            const dots = document.createElement("div");
+            dots.className = "design-slide-dots";
+            slideState.images.forEach((_, i) => {
+              const dot = document.createElement("div");
+              dot.className = "design-slide-dot" + (i === 0 ? " active" : "");
+              dot.addEventListener("click", () => {
+                slideState.index = i;
+                renderSlide();
+              });
+              dots.appendChild(dot);
+            });
+
+            designLightboxMedia.appendChild(prevBtn);
+            designLightboxMedia.appendChild(nextBtn);
+            designLightboxMedia.appendChild(dots);
+          }
+        } else {
+          const img = document.createElement("img");
+          img.src = item.dataset.src;
+          designLightboxMedia.appendChild(img);
+        }
+
+        designLightbox.classList.add("active");
+      }
+
+      document.getElementById("design-lightbox-close").addEventListener("click", closeDesignLightbox);
+      designLightbox.querySelector(".design-lightbox-backdrop").addEventListener("click", closeDesignLightbox);
+
       designItems.forEach((item) => {
         item.addEventListener("click", (e) => {
           e.preventDefault();
-          designLightboxImg.src = item.dataset.src;
-          designLightboxTitle.textContent = item.dataset.title;
-          designLightboxMeta.textContent = item.dataset.meta;
-          designLightbox.classList.add("active");
+          openDesignLightbox(item);
         });
+      });
+
+      /* project lightbox — handles slide decks and demo videos */
+      const projectLightbox = document.getElementById("project-lightbox");
+      const projectLightboxMedia = document.getElementById("project-lightbox-media");
+      const projectLightboxCaption = document.getElementById("project-lightbox-caption");
+      let projSlideState = { images: [], index: 0 };
+
+      function renderProjSlide() {
+        const img = projectLightboxMedia.querySelector(".project-slide-img");
+        if (img) img.src = projSlideState.images[projSlideState.index];
+        projectLightboxMedia.querySelectorAll(".design-slide-dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === projSlideState.index);
+        });
+      }
+      function goToProjSlide(delta) {
+        projSlideState.index =
+          (projSlideState.index + delta + projSlideState.images.length) % projSlideState.images.length;
+        renderProjSlide();
+      }
+
+      function closeProjectLightbox() {
+        projectLightbox.classList.remove("active");
+        projectLightboxMedia.innerHTML = "";
+      }
+
+      function openProjectLightbox(btn) {
+        const type = btn.dataset.type;
+        projectLightboxCaption.textContent = btn.dataset.title || "";
+        projectLightboxMedia.innerHTML = "";
+
+        if (type === "video") {
+          const video = document.createElement("video");
+          video.src = btn.dataset.video;
+          video.controls = true;
+          video.autoplay = true;
+          projectLightboxMedia.appendChild(video);
+        } else if (type === "slides") {
+          projSlideState = {
+            images: btn.dataset.slides.split("|").map((s) => s.trim()).filter(Boolean),
+            index: 0,
+          };
+          const img = document.createElement("img");
+          img.className = "project-slide-img";
+          img.src = projSlideState.images[0];
+          projectLightboxMedia.appendChild(img);
+
+          if (projSlideState.images.length > 1) {
+            const prevBtn = document.createElement("button");
+            prevBtn.className = "design-slide-nav prev";
+            prevBtn.textContent = "‹";
+            prevBtn.addEventListener("click", () => goToProjSlide(-1));
+
+            const nextBtn = document.createElement("button");
+            nextBtn.className = "design-slide-nav next";
+            nextBtn.textContent = "›";
+            nextBtn.addEventListener("click", () => goToProjSlide(1));
+
+            const dots = document.createElement("div");
+            dots.className = "design-slide-dots";
+            projSlideState.images.forEach((_, i) => {
+              const dot = document.createElement("div");
+              dot.className = "design-slide-dot" + (i === 0 ? " active" : "");
+              dot.addEventListener("click", () => {
+                projSlideState.index = i;
+                renderProjSlide();
+              });
+              dots.appendChild(dot);
+            });
+
+            projectLightboxMedia.appendChild(prevBtn);
+            projectLightboxMedia.appendChild(nextBtn);
+            projectLightboxMedia.appendChild(dots);
+          }
+        }
+
+        projectLightbox.classList.add("active");
+      }
+
+      document.getElementById("project-lightbox-close").addEventListener("click", closeProjectLightbox);
+      projectLightbox.querySelector(".project-lightbox-backdrop").addEventListener("click", closeProjectLightbox);
+
+      document.querySelectorAll(".work-action[data-type]").forEach((btn) => {
+        btn.addEventListener("click", () => openProjectLightbox(btn));
       });
 
       /* experience items */
