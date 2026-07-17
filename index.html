@@ -24,9 +24,14 @@
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+        touch-action: manipulation;
       }
       html {
         scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+      a, button {
+        -webkit-tap-highlight-color: transparent;
       }
 
       /* ─── VARIABLES ───────────────────────────────────────── */
@@ -1948,6 +1953,53 @@
         .cert-featured-grid {
           grid-template-columns: 1fr;
         }
+
+        /* lightboxes + carousel thumbnails on small screens */
+        .cert-thumb-frame {
+          height: 200px;
+        }
+        .cert-thumb-frame img {
+          max-width: 200px;
+        }
+        .cert-lightbox-panel img {
+          max-height: 52vh;
+          max-width: 92vw;
+        }
+        .cert-lightbox-name {
+          font-size: 14px;
+        }
+
+        .design-lightbox-panel,
+        .project-lightbox-panel {
+          max-width: 96vw;
+          max-height: 92vh;
+        }
+        .design-lightbox-media img,
+        .design-lightbox-media video,
+        .project-lightbox-media img,
+        .project-lightbox-media video {
+          max-width: 92vw;
+          max-height: 58vh;
+        }
+        .design-lightbox-media iframe {
+          width: 92vw;
+          height: 58vh;
+        }
+        .design-slide-nav {
+          width: 32px;
+          height: 32px;
+          font-size: 14px;
+        }
+        .design-slide-nav.prev { left: 6px; }
+        .design-slide-nav.next { right: 6px; }
+        .design-lightbox-link {
+          word-break: break-word;
+          font-size: 11px;
+        }
+        .design-lightbox-caption,
+        .cert-lightbox-name {
+          padding: 12px 14px 4px;
+        }
       }
     </style>
   </head>
@@ -3205,7 +3257,7 @@
                 
               </div>
               <div class="work-actions">
-                <a class="work-action" href="https://github.com/braedengovender/sams-liquor-store" target="_blank" rel="noopener">github ↗</a>
+                <a class="work-action" href="https://github.com/braedengovender/TheByteClubPOS" target="_blank" rel="noopener">github ↗</a>
                 <button class="work-action" data-type="slides"
                   data-slides="Projects/Sams Liquor Store/Slide 01.png|Projects/Sams Liquor Store/Slide 02.png|Projects/Sams Liquor Store/Slide 03.png"
                   data-title="Sam's Liquor Store — Presentation Slides">view slides</button>
@@ -3307,7 +3359,7 @@
                 <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-original.svg"" alt="Visual Studio" title="Visual Studio" />
               </div>
               <div class="work-actions">
-                <a class="work-action" href="https://github.com/braedengovender/masala-magic" target="_blank" rel="noopener">github ↗</a>
+                <a class="work-action" href="https://github.com/GovRashi/BraedensTestProject" target="_blank" rel="noopener">github ↗</a>
                 <span class="work-note">full commit history</span>
               </div>
             </div>
