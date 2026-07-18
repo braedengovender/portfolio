@@ -356,6 +356,11 @@
         border-color: var(--border-h);
         color: var(--text);
       }
+      a.btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+      }
 
       /* availability badge */
       .avail-badge {
@@ -720,6 +725,11 @@
 
       /* ─── EXPERIENCE ──────────────────────────────────────── */
       #experience {
+        border-top: 1px solid var(--border);
+      }
+
+      /* ─── LEADERSHIP ──────────────────────────────────────── */
+      #leadership {
         border-top: 1px solid var(--border);
       }
 
@@ -1171,11 +1181,18 @@
         border-top: 1px solid var(--border);
       }
 
+      .design-intro {
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 40px;
+        color: var(--text);
+        margin-top: 0.75rem;
+      }
       .design-filters {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
-        margin-top: 2rem;
+        margin-top: 1.25rem;
         margin-bottom: 1.75rem;
       }
       .design-filter {
@@ -1350,6 +1367,10 @@
       .design-slide-dot.active {
         background: var(--green);
         transform: scale(1.3);
+      }
+      .design-lightbox-slide-img,
+      .project-slide-img {
+        transition: opacity 0.15s ease;
       }
       .design-lightbox-link {
         display: inline-flex;
@@ -2131,6 +2152,20 @@
         .cert-lightbox-name {
           font-size: 14px;
         }
+        .cert-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 3px;
+          font-size: 13px;
+        }
+        .cert-row-name {
+          font-size: 13px;
+          white-space: normal;
+        }
+        .cert-row-meta {
+          font-size: 11px;
+          text-align: left;
+        }
 
         .design-lightbox-panel,
         .project-lightbox-panel {
@@ -2233,6 +2268,9 @@
             >
               know more
             </button>
+            <a class="btn-ghost" href="Braeden Govender - CV.pdf" download>
+              download cv
+            </a>
           </div>
         </div>
       </div>
@@ -3323,7 +3361,7 @@
     <section id="design" class="section">
       <div class="container">
         <div class="section-label">graphic design</div>
-
+        <p class="design-intro">some of the things i've designed recently</p>
         <div class="design-filters">
           <button class="design-filter active" data-filter="all">all</button>
           <button class="design-filter" data-filter="social">social media</button>
@@ -3488,7 +3526,7 @@
             <div class="work-body">
               <p class="work-desc">Windows Forms application built with a 5 person final year group, "The Byte Club" for ISTN3AS.</p>
               <ul class="work-list-items">
-                <li>Sales processing, real-time stock, loyalty points, PDF/Excel reporting</li>
+                <li>15+ Windows Forms with SQL Server backend, aales processing, real-time stock, loyalty points & PDF/Excel reporting</li>
                 <li>Achieved 81% for Milestone 1, 88% for Milestone 2 & 91% final module mark</li>
               </ul>
               <div class="work-icons">
@@ -3499,11 +3537,11 @@
               <div class="work-actions">
                 <a class="work-action" href="https://github.com/braedengovender/TheByteClubPOS" target="_blank" rel="noopener">github ↗</a>
                 <button class="work-action" data-type="slides"
-                  data-slides="Projects/Sams Liquor Store/Slide 01.png|Projects/Sams Liquor Store/Slide 02.png|Projects/Sams Liquor Store/Slide 03.png"
-                  data-title="Sam's Liquor Store — Presentation Slides">view slides</button>
+                  data-slides="Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 1.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 2.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 3.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 4.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 5.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 6.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 7.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 8.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 9.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 10.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 11.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 12.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 13.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 14.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 15.jpg|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - Milestone 2 Presentation Slides/Slide 16.jpg"
+                  data-title="Sam's Liquor Store POS & Inventory Management System - Presentation Slides">view slides</button>
                 <button class="work-action" data-type="slides"
-                  data-slides="Projects/Sams Liquor Store/Screenshots/Login.png|Projects/Sams Liquor Store/Screenshots/Cashier Dashboard.png|Projects/Sams Liquor Store/Screenshots/Shopping Cart.png|Projects/Sams Liquor Store/Screenshots/Manager Dashboard.png|Projects/Sams Liquor Store/Screenshots/PDF Reporting.png"
-                  data-title="Sam's Liquor Store — Screenshots">view screenshots</button>
+                  data-slides="Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/0.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/1.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/2.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/3.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/4.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/5.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/6.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/7.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/8.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/9.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/10.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/11.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/12.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/13.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/14.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/15.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/16.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/17.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/18.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/19.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/20.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/21.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/22.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/23.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/24.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/25.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/26.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/27.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/28.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/29.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/30.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/31.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/32.png|Projects/ISTN3AS Project/ISTN3AS Sam's Liquor Shop - POS & Inventory Management System Screenshots/33.png"
+                  data-title="POS & Inventory Management System Application - Screenshots">view screenshots</button>
                 <span class="work-note">full commit history</span>
               </div>
             </div>
@@ -3539,11 +3577,11 @@
               <div class="work-actions">
                 <a class="work-action" href="https://github.com/braedengovender/cpp-inventory-management" target="_blank" rel="noopener">github ↗</a>
                 <button class="work-action" data-type="slides"
-                  data-slides="Projects/COMP315 Project/Slide 01.png|Projects/COMP315 Project/Slide 02.png|Projects/COMP315 Project/Slide 03.png"
+                  data-slides="Projects/COMP315 Project/COMP315 Code Crusaders - C++ Presentation Slides/Slide 1.jpg|Projects/COMP315 Project/COMP315 Code Crusaders - C++ Presentation Slides/Slide 2.jpg|Projects/COMP315 Project/COMP315 Code Crusaders - C++ Presentation Slides/Slide 3.jpg|Projects/COMP315 Project/COMP315 Code Crusaders - C++ Presentation Slides/Slide 4.jpg|Projects/COMP315 Project/COMP315 Code Crusaders - C++ Presentation Slides/Slide 5.jpg|Projects/COMP315 Project/COMP315 Code Crusaders - C++ Presentation Slides/Slide 6.jpg|Projects/COMP315 Project/COMP315 Code Crusaders - C++ Presentation Slides/Slide 7.jpg|Projects/COMP315 Project/COMP315 Code Crusaders - C++ Presentation Slides/Slide 8.jpg|Projects/COMP315 Project/COMP315 Code Crusaders - C++ Presentation Slides/Slide 9.jpg"
                   data-title="Multi-Threaded Inventory System - Presentation Slides">view slides</button>
-                <a class="work-action" href="Projects/COMP315 Project/Report.pdf" target="_blank" rel="noopener">view documentation</a>
+                <a class="work-action" href="Projects/COMP315 Project/COMP315 Code Crusaders - C++ Project Report.pdf" target="_blank" rel="noopener">view documentation</a>
                 <button class="work-action" data-type="video"
-                  data-video="Projects/COMP315 Project/COMP315 Code Crusaders C++ Demo.mp4"
+                  data-video="https://media.githubusercontent.com/media/braedengovender/portfolio/main/Projects/COMP315%20Project/COMP315%20Code%20Crusaders%20C%2B%2B%20Demo.mp4"
                   data-title="Multi-Threaded Inventory System - Demo (narrated by Bongekile Dlamini - Group Leader)">watch demo</button>
               </div>
             </div>
@@ -3583,7 +3621,7 @@
                 <button class="work-action" data-type="slides"
                   data-slides="Projects/Masala Magic/Screenshots/Login.png|Projects/Masala Magic/Screenshots/Dashboard.png|Projects/Masala Magic/Screenshots/POS Screen.png|Projects/Masala Magic/Screenshots/Inventory.png"
                   data-title="Masala Magic - Screenshots">view screenshots</button>
-                <a class="work-action" href="Projects/Masala Magic/Report.pdf" target="_blank" rel="noopener">view documentation</a>
+                <a class="work-action" href="Projects/ISTN212 Project/ISTN212 Masala Magic - POS Application Documentation.pdf" target="_blank" rel="noopener">view documentation</a>
               </div>
             </div>
           </div>
@@ -3654,7 +3692,7 @@
               say hi! <em>don't be shy.</em>
             </h2>
             <p class="contact-sub">
-              got a project in mind? want to collab? or just want to say hi? send me a message here, or email me directly :)
+              message me before i write another line of code!
             </p>
             <a href="mailto:braedengovender01@gmail.com" class="contact-email">
               braedengovender01@gmail.com
@@ -3662,7 +3700,7 @@
             <div class="social-row">
               <a href="https://github.com/braedengovender" class="social-link">github</a>
               <a href="https://linkedin.com/in/braedengovender" class="social-link">linkedin</a>
-              <a href="#" class="social-link">download resume</a>
+              <a href="#" class="social-link">download cv</a>
             </div>
           </div>
 
@@ -4005,7 +4043,19 @@
 
       function renderSlide() {
         const img = designLightboxMedia.querySelector(".design-lightbox-slide-img");
-        if (img) img.src = slideState.images[slideState.index];
+        const targetSrc = slideState.images[slideState.index];
+        if (img && img.dataset.loadingSrc !== targetSrc) {
+          img.dataset.loadingSrc = targetSrc;
+          img.style.opacity = "0.35";
+          const preloadImg = new Image();
+          preloadImg.onload = () => {
+            if (img.dataset.loadingSrc === targetSrc) {
+              img.src = targetSrc;
+              img.style.opacity = "1";
+            }
+          };
+          preloadImg.src = targetSrc;
+        }
         designLightboxMedia.querySelectorAll(".design-slide-dot").forEach((dot, i) => {
           dot.classList.toggle("active", i === slideState.index);
         });
@@ -4106,7 +4156,19 @@
 
       function renderProjSlide() {
         const img = projectLightboxMedia.querySelector(".project-slide-img");
-        if (img) img.src = projSlideState.images[projSlideState.index];
+        const targetSrc = projSlideState.images[projSlideState.index];
+        if (img && img.dataset.loadingSrc !== targetSrc) {
+          img.dataset.loadingSrc = targetSrc;
+          img.style.opacity = "0.35";
+          const preloadImg = new Image();
+          preloadImg.onload = () => {
+            if (img.dataset.loadingSrc === targetSrc) {
+              img.src = targetSrc;
+              img.style.opacity = "1";
+            }
+          };
+          preloadImg.src = targetSrc;
+        }
         projectLightboxMedia.querySelectorAll(".design-slide-dot").forEach((dot, i) => {
           dot.classList.toggle("active", i === projSlideState.index);
         });
