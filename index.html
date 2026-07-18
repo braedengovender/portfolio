@@ -1436,6 +1436,10 @@
         border: 2px solid var(--green);
         z-index: 1;
       }
+      .work-item.work-current::before {
+        background: var(--green);
+        box-shadow: 0 0 0 4px var(--green-glow);
+      }
       .work-item:last-child {
         border-bottom: none;
       }
@@ -1941,7 +1945,7 @@
         border-color: rgba(74, 222, 128, 0.4);
       }
       .contact-submit {
-        align-self: flex-start;
+        align-self: flex-end;
         margin-top: 4px;
       }
       .contact-form-status {
@@ -1963,6 +1967,7 @@
         color: var(--text-muted);
         text-decoration: none;
         display: inline-block;
+        align-self: flex-start;
         border-bottom: 1px solid var(--border);
         padding-bottom: 4px;
         margin-bottom: 2.5rem;
@@ -2171,11 +2176,11 @@
       <div class="nav-inner">
         <a href="#home" class="nav-logo"> braeden's portfolio </a>
         <ul class="nav-links">
-          <li><a href="#home">home</a></li>
           <li><a href="#about">about</a></li>
           <li><a href="#education">education</a></li>
           <li><a href="#certifications">certifications</a></li>
           <li><a href="#experience">experience</a></li>
+          <li><a href="#leadership">leadership</a></li>
           <li><a href="#design">design</a></li>
           <li><a href="#projects">projects</a></li>
           <li><a href="#skills">skills</a></li>
@@ -3276,6 +3281,44 @@
       </div>
     </section>
 
+    <!-- ─── LEADERSHIP ─────────────────────────────────────── -->
+    <section id="leadership" class="section">
+      <div class="container">
+        <div class="section-label">leadership</div>
+        <div class="exp-list">
+          <div class="exp-item">
+            <div class="exp-top">
+              <div class="exp-left">
+                <div class="exp-dates">FEB — MAY 2026</div>
+                <div class="exp-role">Group Leader <em>— ISTN3SA: Advanced Systems Analysis & Design</em></div>
+                <div class="exp-org">University of KwaZulu-Natal</div>
+              </div>
+            </div>
+            <div class="edu-extra">
+              <div class="edu-extra-item">Led weekly meetings and set targets to track project progress</div>
+              <div class="edu-extra-item">Assigned tasks and reviewed work to ensure quality and accuracy</div>
+              <div class="edu-extra-item">Managed project documentation, meeting minutes, and compiled deliverables</div>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-top">
+              <div class="exp-left">
+                <div class="exp-dates">2019 — 2020</div>
+                <div class="exp-role">Student Representative <em>& Class Head</em></div>
+                <div class="exp-org">Kharwastan Secondary School</div>
+              </div>
+            </div>
+            <div class="edu-extra">
+              <div class="edu-extra-item">Represented the student body and communicated feedback to school staff</div>
+              <div class="edu-extra-item">Organized and collected donations for community service projects</div>
+              <div class="edu-extra-item">Created study groups and tutored students to improve their academic performance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ─── GRAPHIC DESIGN ─────────────────────────────────── -->
     <section id="design" class="section">
       <div class="container">
@@ -3390,7 +3433,7 @@
         <div class="work-list">
 
           <!-- 01 — PERSONAL PORTFOLIO WEBSITE -->
-          <div class="work-item">
+          <div class="work-item work-current">
             <div class="work-main">
               <div class="work-left">
                 <div class="work-num">01</div>
@@ -3611,7 +3654,7 @@
               say hi! <em>don't be shy.</em>
             </h2>
             <p class="contact-sub">
-              got a project in mind? want to collab? or just want to say hi? send me a message below, or email me directly :)
+              got a project in mind? want to collab? or just want to say hi? send me a message here, or email me directly :)
             </p>
             <a href="mailto:braedengovender01@gmail.com" class="contact-email">
               braedengovender01@gmail.com
@@ -3953,6 +3996,13 @@
 
       let slideState = { images: [], index: 0 };
 
+      function preloadImages(urls) {
+        urls.forEach((src) => {
+          const img = new Image();
+          img.src = src;
+        });
+      }
+
       function renderSlide() {
         const img = designLightboxMedia.querySelector(".design-lightbox-slide-img");
         if (img) img.src = slideState.images[slideState.index];
@@ -3996,6 +4046,7 @@
             images: item.dataset.slides.split("|").map((s) => s.trim()).filter(Boolean),
             index: 0,
           };
+          preloadImages(slideState.images);
           const img = document.createElement("img");
           img.className = "design-lightbox-slide-img";
           img.src = slideState.images[0];
@@ -4087,6 +4138,7 @@
             images: btn.dataset.slides.split("|").map((s) => s.trim()).filter(Boolean),
             index: 0,
           };
+          preloadImages(projSlideState.images);
           const img = document.createElement("img");
           img.className = "project-slide-img";
           img.src = projSlideState.images[0];
