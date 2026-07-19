@@ -162,6 +162,90 @@
         color: var(--text);
       }
 
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+        width: 32px;
+        height: 32px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+      .nav-toggle span {
+        display: block;
+        width: 100%;
+        height: 1.5px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: transform 0.25s var(--ease), opacity 0.2s;
+      }
+      .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(5.5px) rotate(45deg);
+      }
+      .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-5.5px) rotate(-45deg);
+      }
+
+      .mobile-nav {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: none;
+      }
+      .mobile-nav.active {
+        display: block;
+      }
+      .mobile-nav-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(3px);
+      }
+      .mobile-nav-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 78%;
+        max-width: 300px;
+        background: var(--surface2);
+        border-left: 1px solid var(--border-h);
+        padding: 5rem 1.5rem 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s var(--ease);
+        overflow-y: auto;
+      }
+      .mobile-nav.active .mobile-nav-panel {
+        transform: translateX(0);
+      }
+      .mobile-nav-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .mobile-nav-links a {
+        display: block;
+        padding: 12px 4px;
+        font-size: 15px;
+        color: var(--text-muted);
+        text-decoration: none;
+        border-bottom: 1px solid var(--border);
+        letter-spacing: 0.03em;
+        transition: color 0.15s, padding-left 0.15s;
+      }
+      .mobile-nav-links a:hover,
+      .mobile-nav-links a:active {
+        color: var(--text);
+        padding-left: 8px;
+      }
+
       /* ─── SECTIONS BASE ───────────────────────────────────── */
       .section {
         padding: 7rem 2.5rem;
@@ -1181,7 +1265,8 @@
         border-top: 1px solid var(--border);
       }
 
-      .design-intro {
+      .design-intro,
+      .section-tagline {
         font-family: var(--serif);
         font-style: italic;
         font-size: 40px;
@@ -1218,9 +1303,8 @@
       }
 
       .design-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+        column-count: 3;
+        column-gap: 14px;
       }
       .design-item {
         display: block;
@@ -1233,6 +1317,8 @@
         opacity: 0;
         transform: translateY(16px);
         transition: border-color 0.2s;
+        break-inside: avoid;
+        margin-bottom: 14px;
       }
       .design-item.hidden {
         display: none;
@@ -1244,6 +1330,7 @@
         width: 100%;
         height: auto;
         display: block;
+        background: var(--surface2);
       }
       .design-overlay {
         position: absolute;
@@ -1410,7 +1497,7 @@
 
       @media (max-width:700px){
         .design-grid{
-          grid-template-columns:repeat(2,1fr);
+          column-count: 2;
         }
       }
 
@@ -2091,6 +2178,9 @@
         .nav-links {
           display: none;
         }
+        .nav-toggle {
+          display: flex;
+        }
         .hero-title {
           font-size: 2.6rem;
         }
@@ -2221,8 +2311,28 @@
           <li><a href="#skills">skills</a></li>
           <li><a href="#contact">contact</a></li>
         </ul>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </nav>
+
+    <div class="mobile-nav" id="mobile-nav">
+      <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+      <div class="mobile-nav-panel">
+        <ul class="mobile-nav-links">
+          <li><a href="#about">about</a></li>
+          <li><a href="#education">education</a></li>
+          <li><a href="#certifications">certifications</a></li>
+          <li><a href="#experience">experience</a></li>
+          <li><a href="#leadership">leadership</a></li>
+          <li><a href="#design">design</a></li>
+          <li><a href="#projects">projects</a></li>
+          <li><a href="#skills">skills</a></li>
+          <li><a href="#contact">contact</a></li>
+        </ul>
+      </div>
+    </div>
 
     <!-- ─── HOME ───────────────────────────────────────────── -->
     <section id="home" class="section">
@@ -2292,33 +2402,18 @@
             </div>
           </div>
           <div class="about-right">
-            <p class="about-p"> <!--  [Write something genuine about yourself.] [Avoid
-              clichés. Share your journey, what drives you, or how you got into
-              development.]  [Describe your approach to development. What is your philosophy?
-              Do you have any quirky habits or interesting perspectives? Make it personal and engaging.-->
-              <span>hi, i'm brae, an aspiring 21 year old computer scientist.</span> i've always known tech would be my passion - from being <span>featured on national television as a Nickelodeon Genius,</span> my love for tech started when i was about 10 years old - i taught myself how to torrent TV shows, burn them onto DVDs and sell them to my friends and family for fun.
+            <p class="about-p">
+              <span>hi, i'm brae - a 21 year old Computer Science & IT student at UKZN</span>, currently with an 'A' aggregate in 2025, 2026 and building toward Honours in 2027. my interest in tech started young - i was <span>featured on Nickelodeon's Genius TV show as a kid</span>, and haven't stopped tinkering since.
             </p>
             <p class="about-p">
-              my philosophy towards development is that <span>if software doesn't look good, people won't want to use it (myself included).</span> i'm a bit of a perfectionist when it comes to design and extremely iterative when it comes to coding. i can't just leave things as they are if i know it can be improved.
-              <span></span>
+              <span>i believe software only succeeds if people actually enjoy using it</span> - so i design with as much care as i code, iterating until it feels right. i'm especially drawn to <span>fintech</span>, where design, data and finance intersect, and where i'd love to build my career.
             </p>
-            <p class="about-p">
-              as a current graphic designer, <span>my dream is to create software applications people love to not just use, but enjoy interacting with.</span>
-            </p>
-            <p class="about-p">
-              while software development has been a major focus of my academic journey, it isn't my only passion. i'm particularly interested in fintech, and i'd love to work for a bank or investment firm one day. i enjoy sitting at the intersection of finance, tech and design, which is why <span>i'm drawn to both software engineering and fintech.</span>
-            </p>
-            <p class="about-p">i made this website to showcase everything that you can't see in a traditional CV. plus, it also gave me an excuse to make a fun holiday project, so i'm hoping you enjoy exploring it.</p>
             <p class="about-p">when i'm not writing code i'm probably</p>
             <div class="about-hobbies">
-              <div class="about-hobby">Listening to K-Pop & Watching K-Dramas</div>
+              <div class="about-hobby">Watching K-Dramas & K-Pop</div>
               <div class="about-hobby">Learning Korean (700+ day Duolingo streak)</div>
-              <div class="about-hobby">Playing Call of Duty, Fortnite & Roblox</div>
-              <div class="about-hobby">Reading Poetry, Dystopian Sci-Fi & Manhwas</div>
+              <div class="about-hobby">Gaming - Call of Duty, Fortnite, Roblox</div>
             </div>
-            <p class="about-p" style="margin-top: 0.5rem">
-              my fav IT joke: "where did the IT guy go?"...he probably ransomware.
-            </p>
           </div>
         </div>
       </div>
@@ -2328,6 +2423,7 @@
     <section id="education" class="section">
       <div class="container">
         <div class="section-label">education</div>
+        <p class="section-tagline">i learnt a lot in lectures, but the real learning happens in the IDE!</p>
         <div class="edu-list">
           <!-- UNIVERSITY -->
           <div class="edu-item edu-current">
@@ -3265,6 +3361,7 @@
     <section id="experience" class="section">
       <div class="container">
         <div class="section-label">experience</div>
+        <p class="section-tagline">you need it to get the job, but the job's what gives it!</p>
         <div class="exp-list">
           <!-- GRAPHIC DESIGNER — CURRENT -->
           <div class="exp-item exp-current">
@@ -3643,6 +3740,7 @@
     <section id="skills" class="section">
       <div class="container">
         <div class="section-label">skills & technologies</div>
+        <p class="section-tagline">learnt by coding all day and debugging all night!</p>
         <div class="skills-grid">
           <div class="skill-col">
             <div class="skill-col-title">programming languages</div>
@@ -4312,6 +4410,28 @@
           } finally {
             submitBtn.disabled = false;
           }
+        });
+      }
+      
+      /* mobile nav drawer */
+      const navToggle = document.getElementById("nav-toggle");
+      const mobileNav = document.getElementById("mobile-nav");
+      const mobileNavBackdrop = document.getElementById("mobile-nav-backdrop");
+      function closeMobileNav() {
+        mobileNav.classList.remove("active");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+      function openMobileNav() {
+        mobileNav.classList.add("active");
+        navToggle.setAttribute("aria-expanded", "true");
+      }
+      if (navToggle) {
+        navToggle.addEventListener("click", () => {
+          mobileNav.classList.contains("active") ? closeMobileNav() : openMobileNav();
+        });
+        mobileNavBackdrop.addEventListener("click", closeMobileNav);
+        document.querySelectorAll(".mobile-nav-links a").forEach((a) => {
+          a.addEventListener("click", closeMobileNav);
         });
       }
 
