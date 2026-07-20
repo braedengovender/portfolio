@@ -8,6 +8,14 @@
       name="description"
       content="Braeden Govender - Computer Science Student Portfolio"
     />
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <meta property="og:title" content="Braeden Govender - Portfolio" />
+    <meta property="og:description" content="Computer Science & IT student at UKZN - education, projects, certifications, and design work." />
+    <meta property="og:image" content="og-preview.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
@@ -1325,6 +1333,31 @@
       }
       .design-item:hover {
         border-color: rgba(74, 222, 128, 0.35);
+      }
+      .design-item-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.03em;
+        color: var(--text);
+        background: rgba(14, 14, 14, 0.82);
+        border: 1px solid var(--border-h);
+        padding: 5px 10px;
+        border-radius: 100px;
+        opacity: 0;
+        transform: translateY(-4px);
+        transition: opacity 0.2s, transform 0.2s;
+        pointer-events: none;
+        z-index: 2;
+      }
+      .design-item:hover .design-item-badge {
+        opacity: 1;
+        transform: translateY(0);
       }
       .design-item img {
         width: 100%;
@@ -3361,7 +3394,7 @@
     <section id="experience" class="section">
       <div class="container">
         <div class="section-label">experience</div>
-        <p class="section-tagline">you need it to get the job, but the job's what gives it!</p>
+        <p class="section-tagline">you need it to get the job, but the job is what gives it!</p>
         <div class="exp-list">
           <!-- GRAPHIC DESIGNER — CURRENT -->
           <div class="exp-item exp-current">
@@ -4108,6 +4141,16 @@
           delay: i * 0.06,
           scrollTrigger: { trigger: el, start: "top 90%" },
         });
+      });
+
+      document.querySelectorAll(".design-item[data-type='slides']").forEach((item) => {
+        const count = (item.dataset.slides || "").split("|").filter(Boolean).length;
+        if (count > 1) {
+          const badge = document.createElement("div");
+          badge.className = "design-item-badge";
+          badge.innerHTML = `<span>🔍</span> view ${count} slides`;
+          item.appendChild(badge);
+        }
       });
 
       const designFilters = document.querySelectorAll(".design-filter");
