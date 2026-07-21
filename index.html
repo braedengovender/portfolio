@@ -1218,6 +1218,9 @@
         display: flex;
         flex-direction: column;
         box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        isolation: isolate;
       }
       .cert-lightbox-img-wrap {
         background: #1a1a1a;
@@ -1421,6 +1424,9 @@
         display: flex;
         flex-direction: column;
         box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        isolation: isolate;
       }
       .design-lightbox-media {
         position: relative;
@@ -1798,6 +1804,9 @@
         display: flex;
         flex-direction: column;
         box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        isolation: isolate;
       }
       .project-lightbox-media {
         position: relative;
@@ -2320,6 +2329,12 @@
         .design-lightbox-caption,
         .cert-lightbox-name {
           padding: 12px 14px 4px;
+        }
+        .cert-lightbox-backdrop,
+        .design-lightbox-backdrop,
+        .project-lightbox-backdrop {
+          backdrop-filter: none;
+          background: rgba(0, 0, 0, 0.9);
         }
       }
     </style>
